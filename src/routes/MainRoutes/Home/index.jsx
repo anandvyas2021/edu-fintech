@@ -10,6 +10,7 @@ export default function Home() {
             <TrainingSolutions />
             <TrustedStats />
             <LearnFromBest />
+
             {/* <section className="bg-white py-16 px-6">
                 <div className="max-w-4xl mx-auto">
                     <h4 className="text-xl font-semibold mb-6 text-center">
