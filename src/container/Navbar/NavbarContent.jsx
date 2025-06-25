@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+
 import Button from "../../components/basic/Button";
 
 const navItems = [
@@ -40,14 +42,21 @@ const Dropdown = ({ items }) => (
 export default function NavbarContent(props) {
     const [openDropdown, setOpenDropdown] = useState(null);
 
+    const navigate = useNavigate();
+
     return (
         <nav className="w-full px-6 py-4 bg-white shadow-md flex items-center justify-between relative z-50">
             {/* Logo */}
-            <div className="text-2xl font-bold text-blue-600">YourLogo</div>
+            <div
+                className="text-2xl font-bold cursor-pointer text-blue-600"
+                onClick={() => navigate("/")}
+            >
+                YourLogo
+            </div>
 
             {/* Nav Links */}
             <div className="flex space-x-6 relative">
-                {navItems.map((item, index) => (
+                {navItems?.map((item, index) => (
                     <div
                         key={index}
                         className="relative"
