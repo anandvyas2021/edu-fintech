@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 
 import { mockWebinars } from "../../../utils/dummy";
+import Overview from "./detailsTabs/Overview";
+import Agenda from "./detailsTabs/Agenda";
+import Credits from "./detailsTabs/Credits";
+import Faculty from "./detailsTabs/Faculty";
 
 export default function WebinarDetails() {
     const [activeTab, setActiveTab] = useState("Overview");
@@ -63,35 +67,22 @@ export default function WebinarDetails() {
                             )
                         )}
                     </div>
-
                     <div className="mt-4">
-                        <h2 className="text-xl font-semibold mb-2">Overview</h2>
-                        <p className="text-gray-700">{webinar?.details}</p>
-                    </div>
+                        {activeTab === "Overview" && (
+                            <Overview overview={webinar?.overview} />
+                        )}
 
-                    <div className="mt-6">
-                        <h3 className="text-lg font-semibold mb-2">
-                            Learning Objectives
-                        </h3>
-                        <ul className="list-disc list-inside text-gray-700 space-y-1">
-                            {webinar.objectives.map((obj, index) => (
-                                <li key={index}>{obj}</li>
-                            ))}
-                        </ul>
-                    </div>
+                        {activeTab === "Agenda" && (
+                            <Agenda agenda={webinar?.agenda} />
+                        )}
 
-                    <div className="mt-6">
-                        <h3 className="text-lg font-semibold mb-2">Faculty</h3>
-                        <div className="flex items-center space-x-4">
-                            <img
-                                src={webinar?.faculty?.image}
-                                alt={webinar?.faculty?.name}
-                                className="w-20 h-20 rounded-full object-cover"
-                            />
-                            <span className="text-gray-700">
-                                {webinar?.faculty?.name}
-                            </span>
-                        </div>
+                        {activeTab === "Credits" && (
+                            <Credits credits={webinar?.credits} />
+                        )}
+
+                        {activeTab === "Faculty" && (
+                            <Faculty faculty={webinar?.overview?.faculty} />
+                        )}
                     </div>
                 </div>
 
@@ -100,33 +91,32 @@ export default function WebinarDetails() {
                     <div className="border p-4 rounded-lg space-y-4">
                         <div>
                             <span className="text-gray-500 text-sm">
-                                Live Webinar
+                                {webinar?.type}
                             </span>
                             <div className="font-medium">{webinar?.date}</div>
                         </div>
 
-                        <div className="text-sm text-gray-500">
-                            Also available as:
+                        <div>
+                            <div className="text-sm text-gray-500">
+                                Also available as:
+                            </div>
+                            <div className="text-gray-700 font-medium">
+                                {webinar?.otherType} Course
+                            </div>
                         </div>
-                        <div className="text-gray-700 font-medium">
-                            {webinar.type === "Live Webinar"
-                                ? "OnDemand Course"
-                                : "Live Webinar"}
-                        </div>
-
                         <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
                             Purchase Options
                         </button>
 
                         <button className="text-blue-600 text-sm hover:underline">
-                            Add to Wishlist
+                            + Add to Wishlist
                         </button>
                     </div>
 
                     <div className="border p-4 rounded-lg">
                         <h4 className="font-medium mb-2">Credits</h4>
                         <div className="flex flex-wrap gap-2">
-                            {webinar?.credits?.map((credit, idx) => (
+                            {webinar?.credit?.map((credit, idx) => (
                                 <span
                                     key={idx}
                                     className="bg-gray-200 text-sm px-2 py-1 rounded"
@@ -164,19 +154,17 @@ export default function WebinarDetails() {
                             ))}
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div className="mt-8 text-gray-700 max-w-3xl">
-                <h3 className="font-semibold text-lg mb-2">
-                    Why {`YourBrand`}?
-                </h3>
-                <p>
-                    Over 38 years and 1.4 million customers worth of experience
-                    providing continuing education. Our passion is providing you
-                    world-class training to help you succeed in business and as
-                    a professional.
-                </p>
+                    <div className="mt-8 text-gray-700 max-w-3xl">
+                        <h3 className="font-semibold text-lg mb-2">Why Us?</h3>
+                        <p>
+                            Over 38 years and 1.4 million customers worth of
+                            experience providing continuing education. Our
+                            passion is providing you world-class training to
+                            help you succeed in business and as a professional.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );
