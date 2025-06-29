@@ -1,42 +1,53 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "../../../components/basic/Button";
 import { BlockTitle } from "../../../components/typography";
 import { enterpriseFeatures } from "../../../utils/dummy";
 
 export default function EnterpriseFeatures() {
+    let navigate = useNavigate();
+
     return (
         <section className="py-20 px-6 bg-gray-50">
             <div className="max-w-6xl mx-auto">
                 <BlockTitle title="Enterprise Training & Development" />
 
-                <div className="space-y-16">
+                <div className="space-y-12">
                     {enterpriseFeatures.map((feature, index) => (
                         <div
                             key={index}
-                            className={`grid md:grid-cols-2 gap-10 items-center ${
-                                index % 2 !== 0
-                                    ? "!flex md:flex-row-reverse"
-                                    : ""
-                            }`}
+                            className="grid md:grid-cols-2 gap-8 items-stretch bg-white rounded-xl shadow hover:shadow-md transition-all overflow-hidden"
                         >
-                            <img
-                                src={feature.image}
-                                alt={feature.title}
-                                className="w-full h-64 object-cover rounded-xl shadow"
-                            />
+                            {/* Image Block */}
+                            <div
+                                className={`h-72 md:h-auto ${
+                                    index % 2 !== 0 ? "md:order-2" : ""
+                                }`}
+                            >
+                                <img
+                                    src={feature.image}
+                                    alt={feature.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
 
-                            <div>
+                            {/* Content Block */}
+                            <div className="flex flex-col justify-center p-8">
                                 <p className="text-sm text-blue-600 font-semibold mb-2 uppercase">
                                     {feature.subDesc}
                                 </p>
-                                <h3 className="text-2xl font-semibold mb-4">
+                                <h3 className="text-2xl font-semibold mb-4 text-gray-900">
                                     {feature.title}
                                 </h3>
                                 <p className="text-gray-600 mb-6">
                                     {feature.description}
                                 </p>
                                 <Button
-                                    className="px-5 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
-                                    label={feature.cta}
+                                    className="rounded self-start"
+                                    label={feature?.cta}
+                                    onClick={() =>
+                                        navigate(`/${feature?.slug}`)
+                                    }
                                 />
                             </div>
                         </div>

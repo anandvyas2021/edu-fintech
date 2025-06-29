@@ -1,22 +1,20 @@
 import HeroSection from "./HeroSection";
-import TrustedStats from "../Home/TrustedStats";
 import Features from "./Features";
-import Benefits from "./Benefits";
-import CtaSection from "./CtaSection";
-import DemoRequestForm from "../../../custom/DemoRequestForm";
-import About from "./About";
-import RecentBlogs from "./RecentBlogs";
+import TrustedStats from "../Home/TrustedStats";
 import WhatSetsUsApart from "./WhatSetsUsApart";
+import Benefits from "./Benefits";
+import RecentBlogs from "./RecentBlogs";
+import About from "./About";
+import DemoRequestForm from "../../../custom/DemoRequestForm";
 
 export default function EnterpriseSolutions() {
     return (
         <>
             <HeroSection />
-            <TrustedStats />
             <Features />
-            {/* <Benefits /> */}
-            <CtaSection />
+            <TrustedStats />
             <WhatSetsUsApart />
+            <Benefits />
             <RecentBlogs />
             <About />
             <DemoRequestForm />

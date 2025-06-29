@@ -1,3 +1,5 @@
+import webinarDummy from "../assets/webinarDummy.jpg";
+
 export const trustedBrands = [
     {
         name: "Google",
@@ -59,11 +61,180 @@ export const enterpriseFeatures = [
         cta: "Learn More",
     },
     {
-        subDesc: "CONSOLIDATE EFFORTS",
+        subDesc: "CONCENTRATE EFFORTS",
         title: "Unify Company Training and Development",
         description:
             "Centralizing your company training is the most logical and cost-effective approach to employee learning and development. Oversee your company’s training programs and avoid the hidden costs of paying separate vendors for individual courses.",
         image: "https://source.unsplash.com/600x400/?planning,documents",
         cta: "Browse Courses",
+        slug: "training",
     },
+];
+
+export const mockWebinars = [
+    {
+        _id: 1,
+        title: "Best Practices for Communicating Performance Expectations",
+        slug: "best-practices-for-communicating-performance-expectations",
+        image: webinarDummy,
+        date: "Jun 30",
+        type: "Live Webinar",
+        credits: ["ASA", "SHRM"],
+        topics: ["Workplace Compliance"],
+        description:
+            "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
+        details: `Everyone wants to catapult their career... (full description here)`,
+        objectives: [
+            "You will be able to review innovative ways to use the calendar.",
+            "You will be able to discuss how to use the quick access tool bar.",
+            "You will be able to identify how to click and drag emails between folders.",
+            "You will be able to apply AI tips for handling email.",
+        ],
+        faculty: {
+            name: "Karla Brandau, CEO",
+            image: "https://your-real-image-link.com/faculty.jpg",
+        },
+        relatedTrainings: [
+            {
+                _id: 2,
+                title: "Employee Code of Conduct Essentials",
+                type: "OnDemand Course",
+            },
+            {
+                _id: 3,
+                title: "Punctuation Basics for Business Writing",
+                type: "Live Webinar",
+                date: "July 28, 2025",
+            },
+            {
+                _id: 4,
+                title: "Running Effective Board Meetings",
+                type: "OnDemand Course",
+            },
+        ],
+    },
+    {
+        _id: 2,
+        title: "Microsoft® Outlook Tips and Tricks",
+        slug: "microsoft-outlook-tips-and-tricks",
+        image: webinarDummy,
+        date: "June 30 2025",
+        type: "Live Webinar",
+        credits: ["NASBA", "AIPB"],
+        topics: ["General Business Skills"],
+        description:
+            "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
+        details: `Everyone wants to catapult their career... (full description here)`,
+        objectives: [
+            "You will be able to review innovative ways to use the calendar.",
+            "You will be able to discuss how to use the quick access tool bar.",
+            "You will be able to identify how to click and drag emails between folders.",
+            "You will be able to apply AI tips for handling email.",
+        ],
+        faculty: {
+            name: "Karla Brandau, CEO",
+            image: "https://your-real-image-link.com/faculty.jpg",
+        },
+        relatedTrainings: [
+            {
+                _id: 2,
+                title: "Employee Code of Conduct Essentials",
+                type: "OnDemand Course",
+            },
+            {
+                _id: 3,
+                title: "Punctuation Basics for Business Writing",
+                type: "Live Webinar",
+                date: "July 28, 2025",
+            },
+            {
+                _id: 4,
+                title: "Running Effective Board Meetings",
+                type: "OnDemand Course",
+            },
+        ],
+    },
+    {
+        _id: 3,
+        title: "Accurately Classifying Your Products for Sales Tax",
+        slug: "accurately-classifying-your-products-for-sales-tax",
+        image: webinarDummy,
+        date: "Jul 8",
+        type: "Live Webinar",
+        credits: ["NASBA"],
+        topics: ["Accounting/Tax"],
+        description:
+            "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
+        details: `Everyone wants to catapult their career... (full description here)`,
+        objectives: [
+            "You will be able to review innovative ways to use the calendar.",
+            "You will be able to discuss how to use the quick access tool bar.",
+            "You will be able to identify how to click and drag emails between folders.",
+            "You will be able to apply AI tips for handling email.",
+        ],
+        faculty: {
+            name: "Karla Brandau, CEO",
+            image: "https://your-real-image-link.com/faculty.jpg",
+        },
+        relatedTrainings: [
+            {
+                _id: 2,
+                title: "Employee Code of Conduct Essentials",
+                type: "OnDemand Course",
+            },
+            {
+                _id: 3,
+                title: "Punctuation Basics for Business Writing",
+                type: "Live Webinar",
+                date: "July 28, 2025",
+            },
+            {
+                _id: 4,
+                title: "Running Effective Board Meetings",
+                type: "OnDemand Course",
+            },
+        ],
+    },
+    {
+        _id: 4,
+        title: "Cross Cultural Collaboration for Effective Teams",
+        slug: "cross-cultural-collaboration-for-effective-teams",
+        image: webinarDummy,
+        date: "Jul 8",
+        type: "Live Webinar",
+        credits: ["ASA", "SHRM"],
+        topics: ["Leadership Development"],
+        description:
+            "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
+        details: `Everyone wants to catapult their career... (full description here)`,
+        objectives: [
+            "You will be able to review innovative ways to use the calendar.",
+            "You will be able to discuss how to use the quick access tool bar.",
+            "You will be able to identify how to click and drag emails between folders.",
+            "You will be able to apply AI tips for handling email.",
+        ],
+        faculty: {
+            name: "Karla Brandau, CEO",
+            image: "https://your-real-image-link.com/faculty.jpg",
+        },
+        relatedTrainings: [
+            {
+                _id: 2,
+                title: "Employee Code of Conduct Essentials",
+                type: "OnDemand Course",
+            },
+            {
+                _id: 3,
+                title: "Punctuation Basics for Business Writing",
+                type: "Live Webinar",
+                date: "July 28, 2025",
+            },
+            {
+                _id: 4,
+                title: "Running Effective Board Meetings",
+                type: "OnDemand Course",
+            },
+        ],
+    },
+    // Add more mock data as needed...
 ];
