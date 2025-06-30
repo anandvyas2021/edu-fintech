@@ -31,40 +31,35 @@ export const enterpriseFeatures = [
     {
         subDesc: "LEARNING PLATFORM",
         title: "Assign and Track Employee Coursework",
-        description:
-            "Our intuitive Learning Platform helps you manage every aspect of your company’s training and continuing education initiatives. Assign courses and Learning Paths to individual employees or teams. Track continuing education credits, see overall course progress, and download certificates — all conveniently in your dashboard.",
+        desc: "Our intuitive Learning Platform helps you manage every aspect of your company’s training and continuing education initiatives. Assign courses and Learning Paths to individual employees or teams. Track continuing education credits, see overall course progress, and download certificates — all conveniently in your dashboard.",
         image: "https://source.unsplash.com/600x400/?training,corporate",
         cta: "Learning Platform",
     },
     {
         subDesc: "LEARNING PATHS",
         title: "Fill Knowledge Gaps",
-        description:
-            "We work with our members to determine goals and create customized Learning Solutions for their workforce. Managers can create teams or employee Learning Paths to help enhance core skills or address knowledge areas needed to meet company training and development goals.",
+        desc: "We work with our members to determine goals and create customized Learning Solutions for their workforce. Managers can create teams or employee Learning Paths to help enhance core skills or address knowledge areas needed to meet company training and development goals.",
         image: "https://source.unsplash.com/600x400/?career,growth",
         cta: "Learning Paths",
     },
     {
         subDesc: "A TRUSTED PARTNER",
         title: "Request Custom Courses",
-        description:
-            "Have a course in mind for your employees that you don’t see on our site? Our in-house production team can create custom employee training solutions that fit your organization’s needs. We work with you to achieve your company’s training and development goals. Lorman is not just a content provider — we are a true training partner.",
+        desc: "Have a course in mind for your employees that you don’t see on our site? Our in-house production team can create custom employee training solutions that fit your organization’s needs. We work with you to achieve your company’s training and development goals. Lorman is not just a content provider — we are a true training partner.",
         image: "https://source.unsplash.com/600x400/?education,custom",
         cta: "Request Courses",
     },
     {
         subDesc: "LMS INTEGRATION",
         title: "Integrate With Your LMS",
-        description:
-            "Integrate our huge library of content and training programs with your LMS. Simply download SCORM files for any course or resource in our library or opt for chosen learning management system integration. We’re here every step of the way to help make your corporate training initiatives as easy as possible.",
+        desc: "Integrate our huge library of content and training programs with your LMS. Simply download SCORM files for any course or resource in our library or opt for chosen learning management system integration. We’re here every step of the way to help make your corporate training initiatives as easy as possible.",
         image: "https://source.unsplash.com/600x400/?software,team",
         cta: "Learn More",
     },
     {
         subDesc: "CONCENTRATE EFFORTS",
         title: "Unify Company Training and Development",
-        description:
-            "Centralizing your company training is the most logical and cost-effective approach to employee learning and development. Oversee your company’s training programs and avoid the hidden costs of paying separate vendors for individual courses.",
+        desc: "Centralizing your company training is the most logical and cost-effective approach to employee learning and development. Oversee your company’s training programs and avoid the hidden costs of paying separate vendors for individual courses.",
         image: "https://source.unsplash.com/600x400/?planning,documents",
         cta: "Browse Courses",
         slug: "training",
@@ -758,9 +753,7 @@ export const educators = [
         company: "Rothwell & Associates, Inc.",
         about: `
     <div>
-        <p><strong>Ph.D., SPHR, SHRM-SCP, RODC, CPTD Fellow</strong></p>
-        <p><strong>Rothwell & Associates, Inc.</strong></p>
-        <ul>
+        <ul style="list-style-type:square;">
             <li>President/Rothwell & Associates, Inc. and Rothwell & Associates, LLC</li>
             <li>Distinguished Professor at The Penn State University</li>
             <li>50 years of HR experience in government, multinational business, and owner of 5 small businesses</li>
@@ -773,5 +766,295 @@ export const educators = [
         </ul>
     </div>
 `,
+    },
+];
+
+export const subscriptionPlans = [
+    {
+        title: "Single Courses",
+        price: "",
+        desc: "Compliance & Upskilling courses available in on-demand and live formats.",
+        cta: "Explore Courses",
+        features: [
+            "Compliance & Upskilling",
+            "OnDemand & Live Courses",
+            "Learning Paths",
+            "Continuing Education Units",
+            "Email, Chat & Phone Support",
+        ],
+    },
+    {
+        title: "Individual Pass",
+        price: "$699 / year",
+        desc: "Comprehensive professional business training through the year for individuals.",
+        cta: "Buy Now",
+        features: [
+            "Unlimited Course Subscription",
+            "Unlimited Learning Paths",
+            "Whitepapers & Reports",
+            "Personalized Course Guidance",
+            "State-Specific Credit Tracker",
+            "Course Wishlists",
+        ],
+    },
+    {
+        title: "Teams & Enterprise",
+        price: "Custom Quote",
+        desc: "Customize a plan tailored around the needs of your team & organization.",
+        cta: "Schedule a Demo",
+        slug: "demo",
+        features: [
+            "Course Assignment",
+            "Team Reporting & Tracking",
+            "Co-Branded Team Dashboard",
+            "Dedicated Account Manager",
+            "Customer Success Strategy Sessions",
+            "Discounted Custom Training",
+        ],
+    },
+    {
+        title: "Custom Training",
+        price: "Custom Quote",
+        desc: "Lorman can help you fulfill your team's specific training needs.",
+        cta: "Contact Sales",
+        features: [
+            "Custom Course Creation",
+            "Virtual Training",
+            "In-Person Training",
+            "Learning Week Development",
+            "Team Upskilling & Compliance Annual Planning",
+        ],
+    },
+];
+
+export const planComparisonData = [
+    { type: "heading", title: "Compliance Training & Upskilling" },
+    {
+        feature: "OnDemand Courses",
+        single: true,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Live Webinars",
+        single: true,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Learning Paths",
+        single: true,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Whitepapers",
+        single: false,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Reports",
+        single: false,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Slide Decks",
+        single: false,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Videos",
+        single: false,
+        individual: "Unlimited",
+        team: "Unlimited",
+    },
+    {
+        feature: "Written Materials",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    { feature: "Course Exams", single: true, individual: true, team: true },
+    {
+        feature: "Course Chaptering",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Skills Reinforcement",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Expert Faculty",
+        single: true,
+        individual: true,
+        team: true,
+    },
+
+    { type: "heading", title: "Continuing Education Credit" },
+    {
+        feature: "Hundreds of CE Credits (CLE, NASBA, HRCI...)",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Certificate of Completion",
+        single: true,
+        individual: true,
+        team: true,
+    },
+
+    { type: "heading", title: "Learning Platform" },
+    {
+        feature: "Learner Dashboard",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    { feature: "Wishlists", single: true, individual: true, team: true },
+    {
+        feature: "State-Specific Credit Tracker",
+        single: false,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Custom Branding",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Mobile-Friendly",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Exportable Learning Packages (SCORM 1.2)",
+        single: false,
+        individual: false,
+        team: "Add-On",
+    },
+
+    { type: "heading", title: "Team Management" },
+    {
+        feature: "Manage Multiple Teams",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "User & Group Permissions",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Team Reports & Dashboards",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Course Assignment Tools",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Course Deadlines",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Notifications & Reminders",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Custom Exam Configurations",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Single Sign-On (SSO)",
+        single: false,
+        individual: false,
+        team: "Add-On",
+    },
+
+    { type: "heading", title: "Professional Services & Support" },
+    {
+        feature: "Email, Chat, & Phone Support",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Personalized Course Recommendations",
+        single: true,
+        individual: true,
+        team: true,
+    },
+    {
+        feature: "Dedicated Account Manager",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Dedicated Customer Success Strategy Sessions",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Learning Week Development",
+        single: false,
+        individual: false,
+        team: true,
+    },
+    {
+        feature: "Team Upskilling & Compliance Annual Planning",
+        single: false,
+        individual: false,
+        team: true,
+    },
+
+    { type: "heading", title: "Custom Training" },
+    {
+        feature: "Custom Learning Paths",
+        single: false,
+        individual: false,
+        team: "Add-On",
+    },
+    {
+        feature: "Custom Course Creation",
+        single: false,
+        individual: false,
+        team: "Add-On",
+    },
+    {
+        feature: "Virtual Training",
+        single: false,
+        individual: false,
+        team: "Add-On",
+    },
+    {
+        feature: "In-Person Training",
+        single: false,
+        individual: false,
+        team: "Add-On",
     },
 ];

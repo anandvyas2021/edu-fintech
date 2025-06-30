@@ -21,7 +21,7 @@ const navItems = [
         hasDropdown: true,
         items: ["Blog", "Case Studies", "E-books"],
     },
-    { name: "Plans", hasDropdown: false },
+    { name: "Plans", slug: "/plans", hasDropdown: false },
 ];
 
 const Dropdown = ({ items }) => (
@@ -66,6 +66,7 @@ export default function NavbarContent(props) {
                         onMouseLeave={() =>
                             item.hasDropdown && setOpenDropdown(null)
                         }
+                        onClick={() => item?.slug && navigate(item?.slug)}
                     >
                         <div className="flex items-center space-x-1 cursor-pointer font-medium text-gray-700 hover:text-blue-600">
                             <span>{item.name}</span>

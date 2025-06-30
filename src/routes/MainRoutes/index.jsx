@@ -4,6 +4,7 @@ import Home from "./Home";
 import EnterpriseSolutions from "./EnterpriseSolutions";
 import WebinarsPage from "./WebinarsPage";
 import WebinarDetails from "./WebinarsPage/WebinarDetails";
+import Cart from "../../cart";
 
 export default function MainRoutes(props) {
     const routes = useRoutes([
@@ -16,6 +17,7 @@ export default function MainRoutes(props) {
                 { path: "details", element: <WebinarDetails /> },
             ],
         },
+        { path: "/cart", element: <Cart /> },
     ]);
     return <div className="">{routes}</div>;
 }

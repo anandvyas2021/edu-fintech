@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { mockWebinars } from "../../../utils/dummy";
 import Overview from "./detailsTabs/Overview";
 import Agenda from "./detailsTabs/Agenda";
 import Credits from "./detailsTabs/Credits";
 import Faculty from "./detailsTabs/Faculty";
+import AccessPass from "./detailsTabs/AccessPass";
+
+import { mockWebinars } from "../../../utils/dummy";
 
 export default function WebinarDetails() {
     const [activeTab, setActiveTab] = useState("Overview");
@@ -17,7 +19,6 @@ export default function WebinarDetails() {
         (item) => item?.slug === currentWebinarSlug
     );
 
-    console.log(currentWebinarSlug, webinar);
     if (!webinar) {
         return (
             <div className="text-center mt-20 text-lg">Webinar not found.</div>
@@ -51,21 +52,25 @@ export default function WebinarDetails() {
                     </p>
 
                     <div className="flex space-x-4 border-b mt-6 pb-2">
-                        {["Overview", "Agenda", "Credits", "Faculty"].map(
-                            (tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => setActiveTab(tab)}
-                                    className={`text-sm pb-1 ${
-                                        activeTab === tab
-                                            ? "border-b-2 border-blue-600 text-blue-600"
-                                            : "text-gray-600 hover:text-blue-600"
-                                    }`}
-                                >
-                                    {tab}
-                                </button>
-                            )
-                        )}
+                        {[
+                            "Overview",
+                            "Agenda",
+                            "Credits",
+                            "Faculty",
+                            "All-Access Pass",
+                        ].map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => setActiveTab(tab)}
+                                className={`text-sm pb-1 ${
+                                    activeTab === tab
+                                        ? "border-b-2 border-blue-600 text-blue-600"
+                                        : "text-gray-600 hover:text-blue-600"
+                                }`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
                     </div>
                     <div className="mt-4">
                         {activeTab === "Overview" && (
@@ -83,6 +88,7 @@ export default function WebinarDetails() {
                         {activeTab === "Faculty" && (
                             <Faculty faculty={webinar?.overview?.faculty} />
                         )}
+                        {activeTab === "All-Access Pass" && <AccessPass />}
                     </div>
                 </div>
 
