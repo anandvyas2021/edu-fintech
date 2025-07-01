@@ -86,7 +86,7 @@ export default function WebinarList({
 
                             <div
                                 onClick={() => toggleFavourite(item?._id)}
-                                className="absolute top-2 right-2 bg-white rounded-full p-1 shadow cursor-pointer hover:text-red-600"
+                                className="absolute top-2 right-2 bg-white rounded-full p-1 shadow cursor-pointer hover:text-red-600 z-50"
                             >
                                 <HeartIcon
                                     color={
@@ -146,7 +146,7 @@ export default function WebinarList({
                                 {item?.title}
                             </h3>
                             <p className="text-xs text-gray-500">
-                                Credits: {item?.credits.join(", ")}
+                                Credits: {item?.credit?.join(", ")}
                             </p>
                         </div>
                     </div>

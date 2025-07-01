@@ -34,6 +34,7 @@ export const enterpriseFeatures = [
         desc: "Our intuitive Learning Platform helps you manage every aspect of your company’s training and continuing education initiatives. Assign courses and Learning Paths to individual employees or teams. Track continuing education credits, see overall course progress, and download certificates — all conveniently in your dashboard.",
         image: "https://source.unsplash.com/600x400/?training,corporate",
         cta: "Learning Platform",
+        slug: "learning-path",
     },
     {
         subDesc: "LEARNING PATHS",

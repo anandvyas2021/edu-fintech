@@ -1,11 +1,14 @@
 import { useState } from "react";
+import Button from "../../../components/basic/Button";
 
 export default function FormComponent() {
     const [formData, setFormData] = useState({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         company: "",
         phone: "",
+        users: "",
     });
 
     const [errors, setErrors] = useState({});
@@ -13,13 +16,18 @@ export default function FormComponent() {
 
     const validate = () => {
         const newErrors = {};
-        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.firstName.trim())
+            newErrors.firstName = "First name is required";
+        if (!formData.lastName.trim())
+            newErrors.lastName = "Last name is required";
         if (!formData.email.match(/^\S+@\S+\.\S+$/))
             newErrors.email = "Valid email required";
         if (!formData.company.trim())
             newErrors.company = "Company name is required";
-        if (!formData.phone.trim())
-            newErrors.phone = "Phone number is required";
+        if (!formData.phone.match(/^[0-9]{10,15}$/))
+            newErrors.phone = "Valid phone number required";
+        if (!formData.users.match(/^[0-9]+$/))
+            newErrors.users = "Enter valid number of users";
         return newErrors;
     };
 
@@ -32,8 +40,8 @@ export default function FormComponent() {
         }
         setErrors({});
         setSubmitted(true);
-        // TODO: Actual form submission logic
         alert("Demo Request Submitted!");
+        // You can handle actual submission logic here
     };
 
     return submitted ? (
@@ -41,73 +49,115 @@ export default function FormComponent() {
             Thank you! We'll contact you shortly.
         </div>
     ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                }
-                className={`w-full p-3 border rounded ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                }`}
-            />
-            {errors.name && (
-                <p className="text-red-500 text-sm">{errors.name}</p>
-            )}
+        <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto p-4"
+        >
+            <div>
+                <input
+                    type="text"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={(e) =>
+                        setFormData({ ...formData, firstName: e.target.value })
+                    }
+                    className={`w-full p-3 border rounded ${
+                        errors.firstName ? "border-red-500" : "border-gray-300"
+                    }`}
+                />
+                {errors.firstName && (
+                    <p className="text-red-500 text-sm">{errors.firstName}</p>
+                )}
+            </div>
 
-            <input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                }
-                className={`w-full p-3 border rounded ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                }`}
-            />
-            {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
+            <div>
+                <input
+                    type="text"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={(e) =>
+                        setFormData({ ...formData, lastName: e.target.value })
+                    }
+                    className={`w-full p-3 border rounded ${
+                        errors.lastName ? "border-red-500" : "border-gray-300"
+                    }`}
+                />
+                {errors.lastName && (
+                    <p className="text-red-500 text-sm">{errors.lastName}</p>
+                )}
+            </div>
 
-            <input
-                type="text"
-                placeholder="Company Name"
-                value={formData.company}
-                onChange={(e) =>
-                    setFormData({ ...formData, company: e.target.value })
-                }
-                className={`w-full p-3 border rounded ${
-                    errors.company ? "border-red-500" : "border-gray-300"
-                }`}
-            />
-            {errors.company && (
-                <p className="text-red-500 text-sm">{errors.company}</p>
-            )}
+            <div>
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                    }
+                    className={`w-full p-3 border rounded ${
+                        errors.email ? "border-red-500" : "border-gray-300"
+                    }`}
+                />
+                {errors.email && (
+                    <p className="text-red-500 text-sm">{errors.email}</p>
+                )}
+            </div>
 
-            <input
-                type="text"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                }
-                className={`w-full p-3 border rounded ${
-                    errors.phone ? "border-red-500" : "border-gray-300"
-                }`}
-            />
-            {errors.phone && (
-                <p className="text-red-500 text-sm">{errors.phone}</p>
-            )}
+            <div>
+                <input
+                    type="text"
+                    placeholder="Company Name"
+                    value={formData.company}
+                    onChange={(e) =>
+                        setFormData({ ...formData, company: e.target.value })
+                    }
+                    className={`w-full p-3 border rounded ${
+                        errors.company ? "border-red-500" : "border-gray-300"
+                    }`}
+                />
+                {errors.company && (
+                    <p className="text-red-500 text-sm">{errors.company}</p>
+                )}
+            </div>
 
-            <button
-                type="submit"
-                className="bg-primary text-white py-3 px-6 rounded hover:bg-primary-dark w-full"
-            >
-                Request Demo
-            </button>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                    }
+                    className={`w-full p-3 border rounded ${
+                        errors.phone ? "border-red-500" : "border-gray-300"
+                    }`}
+                />
+                {errors.phone && (
+                    <p className="text-red-500 text-sm">{errors.phone}</p>
+                )}
+            </div>
+
+            <div>
+                <input
+                    type="text"
+                    placeholder="Number of Users"
+                    value={formData.users}
+                    onChange={(e) =>
+                        setFormData({ ...formData, users: e.target.value })
+                    }
+                    className={`w-full p-3 border rounded ${
+                        errors.users ? "border-red-500" : "border-gray-300"
+                    }`}
+                />
+                {errors.users && (
+                    <p className="text-red-500 text-sm">{errors.users}</p>
+                )}
+            </div>
+
+            <div className="flex justify-center md:col-span-2 mt-4">
+                <Button label=" Request My Demo" type="submit" />
+            </div>
         </form>
     );
 }
