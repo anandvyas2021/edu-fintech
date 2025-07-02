@@ -1,14 +1,23 @@
-import { Accordion } from "flowbite-react";
+import {
+    Accordion,
+    AccordionPanel,
+    AccordionTitle,
+    AccordionContent,
+} from "flowbite-react";
+import { BlockTitle } from "../typography";
 
-export default function FAQAccordion({ faqs }) {
+export default function FAQAccordion({ title, faqs }) {
     return (
-        <Accordion collapseAll>
-            {faqs?.map((faq, i) => (
-                <Accordion.Panel key={i}>
-                    <Accordion.Title>{faq?.question}</Accordion.Title>
-                    <Accordion.Content>{faq?.answer}</Accordion.Content>
-                </Accordion.Panel>
-            ))}
-        </Accordion>
+        <div className="space-y-8">
+            <BlockTitle title={title} />
+            <Accordion collapseAll>
+                {faqs?.map((faq, i) => (
+                    <AccordionPanel key={i}>
+                        <AccordionTitle>{faq?.question}</AccordionTitle>
+                        <AccordionContent>{faq?.answer}</AccordionContent>
+                    </AccordionPanel>
+                ))}
+            </Accordion>
+        </div>
     );
 }

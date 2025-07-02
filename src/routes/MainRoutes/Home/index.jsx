@@ -2,6 +2,7 @@ import HeroSection from "./HeroSection";
 import TrainingSolutions from "./TrainingSolutions";
 import TrustedStats from "./TrustedStats";
 import LearnFromBest from "./LearnFromBest";
+import FooterAppointCard from "../../../components/cards/FooterAppointCard";
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
             <TrainingSolutions />
             <TrustedStats />
             <LearnFromBest />
+            <FooterAppointCard />
 
             {/* <section className="bg-white py-16 px-6">
                 <div className="max-w-4xl mx-auto">

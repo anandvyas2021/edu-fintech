@@ -1,4 +1,5 @@
 import webinarDummy from "../assets/webinarDummy.jpg";
+import heroBg from "../assets/heroBg.jpg";
 
 export const trustedBrands = [
     {
@@ -70,6 +71,7 @@ export const enterpriseFeatures = [
 export const mockWebinars = [
     {
         _id: 1,
+        category_id: 101,
         title: "Best Practices for Communicating Performance Expectations",
         slug: "best-practices-for-communicating-performance-expectations",
         image: webinarDummy,
@@ -238,6 +240,7 @@ This information will also help managers understand how to bring their efforts a
     },
     {
         _id: 2,
+        category_id: 101,
         title: "Microsoft® Outlook Tips and Tricks",
         slug: "microsoft-outlook-tips-and-tricks",
         image: webinarDummy,
@@ -407,6 +410,7 @@ This information will also help managers understand how to bring their efforts a
     },
     {
         _id: 3,
+        category_id: 102,
         title: "Accurately Classifying Your Products for Sales Tax",
         slug: "accurately-classifying-your-products-for-sales-tax",
         image: webinarDummy,
@@ -576,6 +580,7 @@ This information will also help managers understand how to bring their efforts a
     },
     {
         _id: 4,
+        category_id: 104,
         title: "Cross Cultural Collaboration for Effective Teams",
         slug: "cross-cultural-collaboration-for-effective-teams",
         image: webinarDummy,
@@ -742,7 +747,6 @@ This information will also help managers understand how to bring their efforts a
             },
         ],
     },
-    // Add more mock data as needed...
 ];
 
 export const educators = [
@@ -1057,5 +1061,40 @@ export const planComparisonData = [
         single: false,
         individual: false,
         team: "Add-On",
+    },
+];
+
+export const learningPathsData = [
+    {
+        _id: 101,
+        title: "Human Resource Fundamentals",
+        slug: "human-resource-fundamentals",
+        image: heroBg,
+        label: "Human Resource Fundamentals Provide Numerous Benefits That are Essential for Fostering a Productive and Harmonious Workplace.",
+        desc: `In today’s rapidly evolving global workplace, HR professionals are faced with the unique challenge of navigating the complexities of globalization while maintaining strong ethical standards. As businesses expand across borders, HR professionals must foster cultural understanding and respect, ensuring fair treatment for all employees regardless of their background. Empathy skills play a vital role in this process, enabling HR professionals to connect with individuals on a deeper level, understand their concerns, and create a supportive, inclusive work environment. At the same time, HR professionals must balance their responsibilities with assertiveness, embracing their role as the "boss" of HR to make informed, strategic decisions that benefit both the organization and its employees. To protect themselves from toxic emotions in high-stress situations, HR professionals need to develop emotional resilience, learning techniques to manage stress and remain objective. The rise of AI and tools like ChatGPT also offers new opportunities for HR, automating routine tasks, improving efficiency, and enhancing decision-making, while allowing HR professionals to focus more on meaningful, human-centered aspects of their roles.`,
+    },
+    {
+        _id: 102,
+        title: "AI for Business",
+        slug: "ai-for-business",
+        image: heroBg,
+        label: "Learn how AI is revolutionizing businesses by enhancing efficiency, driving innovation, and improving decision-making.",
+        desc: "With AI-powered automation, companies can streamline operations, reducing the time and resources spent on repetitive tasks, which allows employees to focus on more strategic work. Data-driven insights provided by AI enable businesses to make more informed, precise decisions, identifying trends, customer preferences, and potential opportunities. By incorporating AI, businesses can stay ahead of competitors in an increasingly digital and fast-paced market.",
+    },
+    {
+        _id: 103,
+        title: "5 Pillars of Leadership",
+        slug: "5-pillars-of-leadership",
+        image: heroBg,
+        label: "Mastering the five foundational pillars of leadership equips leaders with the tools to build strong, effective teams and drive organizational success.",
+        desc: "A solid understanding of leadership foundations creates clarity around roles, expectations, and goals, laying the groundwork for confident decision-making. Emphasizing compliance ensures leaders uphold ethical standards and follow regulations, reducing risk and promoting accountability. Effective communication enhances collaboration, alignment, and team morale. Strong interviewing and hiring practices lead to better talent acquisition, fostering long-term growth and team cohesion. Finally, well-developed interpersonal skills improve relationship-building, conflict resolution, and trust—making leaders more approachable and influential. Together, these pillars form a comprehensive leadership toolkit essential for navigating today’s complex workplace.",
+    },
+    {
+        _id: 104,
+        title: "Financial Tools",
+        slug: "financial-tools",
+        image: heroBg,
+        label: "The use of financial management tools is essential for helping businesses make informed, strategic decisions.",
+        desc: "These tools provide real-time visibility into budgets, expenses, cash flow, and overall financial health, allowing organizations to plan accurately and operate efficiently. With features like automated reporting, forecasting, and expense tracking, financial management software reduces human error, saves time, and ensures compliance with regulatory requirements. Whether for small businesses or large enterprises, leveraging the right financial tools empowers leaders to allocate resources wisely, identify growth opportunities, and maintain financial stability in a constantly evolving market.",
     },
 ];
