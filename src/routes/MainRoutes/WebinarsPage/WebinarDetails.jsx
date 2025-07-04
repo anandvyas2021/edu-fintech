@@ -193,7 +193,11 @@ export default function WebinarDetails() {
                     </div>
                 </div>
             </div>
-            <Modal open={isPurchaseModal} handleClose={handlePurchaseClose}>
+            <Modal
+                title="Purchase Options"
+                open={isPurchaseModal}
+                handleClose={handlePurchaseClose}
+            >
                 <PurchaseOptions />
             </Modal>
         </>
