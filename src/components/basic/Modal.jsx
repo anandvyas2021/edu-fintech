@@ -33,7 +33,8 @@ export default function Modal({ open, handleClose, title, children, footer }) {
                                             <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:size-8">
                                                 <X
                                                     aria-hidden="true"
-                                                    className="size-4 text-red-600"
+                                                    className="size-4 text-red-600 cursor-pointer"
+                                                    onClick={handleClose}
                                                 />
                                             </div>
                                         </DialogTitle>

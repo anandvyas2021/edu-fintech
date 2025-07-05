@@ -28,8 +28,11 @@ export default function Overview({ overview }) {
             <div className="mt-6">
                 <h3 className="text-lg font-semibold mb-2">Faculty</h3>
                 <div className="flex items-center space-x-4">
-                    {overview?.faculty?.map((item) => (
-                        <div className="flex flex-col items-center space-x-4">
+                    {overview?.faculty?.map((item, i) => (
+                        <div
+                            className="flex flex-col items-center space-x-4"
+                            key={i}
+                        >
                             <img
                                 src={item?.image}
                                 alt={item?.name}
