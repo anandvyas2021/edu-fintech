@@ -6,15 +6,18 @@ export default function InputField({
     className,
     required,
     error,
-    type,
+    type = "text",
     maxLength,
-    ...rest
+    value,
+    onChange,
+    onBlur,
+    name,
 }) {
     return (
         <div className={`w-72 space-y-1 ${className}`}>
             <Typography
                 as="label"
-                htmlFor={label}
+                htmlFor={name || label}
                 type="small"
                 color="default"
                 className="font-semibold"
@@ -22,17 +25,20 @@ export default function InputField({
                 {label}
                 {required && <span className="text-red-700">*</span>}
             </Typography>
+
             <Input
-                id={label}
+                id={name || label}
                 type={type}
                 placeholder={placeholder}
                 className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                 maxLength={maxLength}
-                {...rest}
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                name={name}
             />
-            <div className="flex gap-1.5 text-foreground">
-                {error && <p className="text-red-500 text-sm">{error}</p>}
-            </div>
+
+            {error && <p className="text-red-500 text-sm">{error}</p>}
         </div>
     );
 }

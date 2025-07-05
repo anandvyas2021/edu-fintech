@@ -1,153 +1,308 @@
-import { useForm } from "react-hook-form";
-import { Input, Select, Typography } from "@material-tailwind/react";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+
 import Button from "../components/basic/Button";
 import InputField from "../components/basic/InputField";
 import Dropdown from "../components/basic/Dropdown";
+import { BlockTitle } from "../components/typography";
+
+import { postAPI } from "../utils/api";
+import { authURL } from "../utils/api/urls";
 
 export default function SignUp() {
+    const [loading, setLoading] = useState(false);
     const {
-        register,
+        control,
         handleSubmit,
         formState: { errors },
         watch,
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data); // API integration goes here
+        setLoading(false);
+        console.log("Form Submitted:", data);
+        postAPI(authURL?.SIGN_UP, { data })
+            .then((res) => {
+                console.log(res);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
-    const employeeNumber = [
+    const companySize = [
         { label: "1-10", value: "1-10" },
         { label: "11-50", value: "11-50" },
         { label: "51-100", value: "51-100" },
         { label: "100+", value: "100+" },
     ];
+
     const password = watch("password");
+    const fieldValues = watch();
+    console.log("form fieldValues", fieldValues);
 
     return (
         <div className="max-w-6xl mx-auto p-6 space-y-8">
+            <div className="flex flex-col items-start justify-start">
+                <BlockTitle title="Sign Up" />
+                <p className="text-gray-600">
+                    Fill out the below details to get started...
+                </p>
+            </div>
             <div className="grid grid-cols-[1fr_0.5fr] gap-8">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    className="border-[1.5px] rounded-lg p-5 grid grid-cols-1 md:grid-cols-2 gap-4"
                 >
-                    <InputField
-                        label="Professional Email Address"
-                        {...register("email", {
-                            required: true,
-                            pattern: /^\S+@\S+$/i,
-                        })}
-                        required
-                        error={errors.email && "Valid email is required"}
+                    {/* Email */}
+                    <Controller
+                        name="email"
+                        control={control}
+                        rules={{
+                            required: "Email is required",
+                            pattern: {
+                                value: /^\S+@\S+$/i,
+                                message: "Enter a valid email",
+                            },
+                        }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Professional Email Address"
+                                required
+                                error={errors.email?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="First Name"
-                        {...register("first_name", { required: true })}
-                        required
-                        error={errors.first_name && "First Name is required"}
+
+                    {/* First Name */}
+                    <Controller
+                        name="first_name"
+                        control={control}
+                        rules={{ required: "First Name is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="First Name"
+                                required
+                                error={errors.first_name?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="Last Name"
-                        {...register("last_name", { required: true })}
-                        required
-                        error={errors.last_name && "Last Name is required"}
+
+                    {/* Last Name */}
+                    <Controller
+                        name="last_name"
+                        control={control}
+                        rules={{ required: "Last Name is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Last Name"
+                                required
+                                error={errors.last_name?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="Phone Number"
-                        type="number"
-                        {...register("phone", { required: true })}
-                        required
-                        maxLength={10}
-                        error={errors.phone && "Phone number is required"}
+
+                    {/* Phone Number */}
+                    <Controller
+                        name="phone_number"
+                        control={control}
+                        rules={{ required: "Phone number is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Phone Number"
+                                type="number"
+                                maxLength={10}
+                                required
+                                error={errors.phone_number?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="Professional Title"
-                        {...register("title", { required: true })}
-                        required
-                        error={errors.title && "Title is required"}
+
+                    {/* Professional Title */}
+                    <Controller
+                        name="title"
+                        control={control}
+                        rules={{ required: "Title is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Professional Title"
+                                required
+                                error={errors.title?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <Dropdown
-                        label="Number of Employees"
-                        options={employeeNumber}
-                        required
-                        {...register("employees", { required: true })}
+
+                    {/* Dropdown */}
+                    <Controller
+                        name="number_of_employees"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                            <Dropdown
+                                label="Number of Employees"
+                                options={companySize}
+                                required
+                                error={
+                                    errors.number_of_employees &&
+                                    "This field is required"
+                                }
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="Company Name"
-                        {...register("company", { required: true })}
-                        required
-                        error={errors.company && "Company Name is required"}
+
+                    {/* Company Name */}
+                    <Controller
+                        name="company_name"
+                        control={control}
+                        rules={{ required: "Company Name is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Company Name"
+                                required
+                                error={errors.company_name?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="Work Address"
-                        {...register("address", { required: true })}
-                        required
-                        error={errors.address && "Work Address is required"}
+
+                    {/* Work Address */}
+                    <Controller
+                        name="work_address"
+                        control={control}
+                        rules={{ required: "Work Address is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Work Address"
+                                required
+                                error={errors.work_address?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="City"
-                        {...register("city", { required: true })}
-                        required
-                        error={errors.city && "City is required"}
+
+                    {/* City */}
+                    <Controller
+                        name="city"
+                        control={control}
+                        rules={{ required: "City is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="City"
+                                required
+                                error={errors.city?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="State/Province"
-                        {...register("state", { required: true })}
-                        required
-                        error={errors.state && "State is required"}
+
+                    {/* State */}
+                    <Controller
+                        name="state"
+                        control={control}
+                        rules={{ required: "State is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="State/Province"
+                                required
+                                error={errors.state?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="ZIP Code"
-                        {...register("zip", { required: true })}
-                        required
-                        error={errors.zip && "ZIP Code is required"}
+
+                    {/* Zip */}
+                    <Controller
+                        name="zip_code"
+                        control={control}
+                        rules={{ required: "ZIP Code is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="ZIP Code"
+                                required
+                                error={errors.zip_code?.message}
+                                {...field}
+                            />
+                        )}
                     />
-                    <InputField
-                        label="Country"
-                        {...register("country", { required: true })}
-                        required
-                        error={errors.country && "Country is required"}
+
+                    {/* Country */}
+                    <Controller
+                        name="country"
+                        control={control}
+                        rules={{ required: "Country is required" }}
+                        render={({ field }) => (
+                            <InputField
+                                label="Country"
+                                required
+                                error={errors.country?.message}
+                                {...field}
+                            />
+                        )}
                     />
+
+                    {/* Password Fields */}
                     <div className="bg-gray-100 p-5 col-span-2 flex gap-10">
-                        <InputField
-                            type="password"
-                            label="Password"
-                            {...register("password", {
-                                required: true,
-                                minLength: 6,
-                            })}
-                            required
-                            error={
-                                errors.password &&
-                                "Password must be at least 6 characters"
-                            }
+                        <Controller
+                            name="password"
+                            control={control}
+                            rules={{
+                                required: "Password is required",
+                                minLength: {
+                                    value: 6,
+                                    message:
+                                        "Password must be at least 6 characters",
+                                },
+                            }}
+                            render={({ field }) => (
+                                <InputField
+                                    type="password"
+                                    label="Password"
+                                    required
+                                    error={errors.password?.message}
+                                    {...field}
+                                />
+                            )}
                         />
-                        <InputField
-                            type="password"
-                            label="Confirm Password"
-                            {...register("confirm_password", {
-                                required: true,
+
+                        <Controller
+                            name="confirm_password"
+                            control={control}
+                            rules={{
+                                required: "Confirm Password is required",
                                 validate: (value) =>
                                     value === password ||
                                     "Passwords do not match",
-                            })}
-                            required
-                            error={
-                                errors.confirm_password &&
-                                errors.confirm_password.message
-                            }
+                            }}
+                            render={({ field }) => (
+                                <InputField
+                                    type="password"
+                                    label="Confirm Password"
+                                    required
+                                    error={errors.confirm_password?.message}
+                                    {...field}
+                                />
+                            )}
                         />
                     </div>
 
-                    {/* Submit Button */}
+                    {/* Submit */}
                     <div className="md:col-span-2">
                         <Button
                             type="submit"
                             label="Create Free Account"
                             className="w-full"
+                            loading={loading}
                         />
                     </div>
                 </form>
+
+                {/* Sidebar Content */}
                 <div>
                     <h3 className="font-semibold">
                         Create a Lorman Account Today and Receive:
