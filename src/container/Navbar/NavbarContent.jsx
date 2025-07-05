@@ -90,7 +90,7 @@ export default function NavbarContent(props) {
                 />
                 <Button
                     label="Request Demo"
-                    onClick={() => alert("Demo Requested!")}
+                    onClick={() => navigate("/demo")}
                 />
             </div>
         </nav>

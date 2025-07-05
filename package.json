@@ -12,6 +12,7 @@
     "dependencies": {
         "@headlessui/react": "^2.2.4",
         "@material-tailwind/react": "^3.0.0-beta.24",
+        "@reduxjs/toolkit": "^2.8.2",
         "axios": "^1.10.0",
         "framer-motion": "^12.18.1",
         "lucide-react": "^0.515.0",
@@ -19,8 +20,11 @@
         "react-countup": "^6.5.3",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.58.1",
+        "react-redux": "^9.2.0",
         "react-router-dom": "^6.21.3",
+        "react-select": "^5.10.1",
         "react-slick": "^0.30.3",
+        "redux-persist": "^6.0.0",
         "slick-carousel": "^1.8.1",
         "swiper": "^11.2.8"
     },

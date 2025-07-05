@@ -17,7 +17,7 @@ export default function Footer() {
                             85044
                         </li>
                         <li className="flex items-start gap-2">
-                            📧 hello@unifiedui.com
+                            📧 hello@fintech.com
                         </li>
                     </ul>
                 </div>
@@ -83,9 +83,9 @@ export default function Footer() {
                 <p>
                     ©Copyright{" "}
                     <a href="#" className="text-indigo-600 hover:underline">
-                        UnifiedUI.com
+                        fintech.com
                     </a>{" "}
-                    All rights reserved. 2024
+                    All rights reserved. 2025
                 </p>
                 <div className="flex space-x-6 mt-2 md:mt-0">
                     <a href="#" className="hover:text-indigo-600">

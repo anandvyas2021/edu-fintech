@@ -6,9 +6,7 @@ export default function DemoPage() {
     return (
         <div>
             <HeroCTASection />
-
             <Features />
-
             <Testimonials />
         </div>
     );

@@ -14,7 +14,7 @@ export default function HeroSection() {
         {
             title: "Professionals",
             desc: "Unlimited access to Lorman’s Learning Library for your personal training and development.",
-            slug: "professionals",
+            slug: "training",
         },
     ];
 
@@ -28,13 +28,17 @@ export default function HeroSection() {
                 <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-8">
                     Continuing Education | Workforce Compliance | Upskilling
                 </p>
-                <div className="flex justify-center space-x-4">
-                    <Button label="Request Demo" />
+                {/* <div className="flex justify-center space-x-4">
+                    <Button
+                        label="Request Demo"
+                        onClick={() => navigate("/demo")}
+                    />
                     <Button
                         label="Browse Courses"
                         className="bg-white !text-indigo-600 border border-indigo-600 hover:bg-indigo-50"
+                        onClick={() => navigate("/training")}
                     />
-                </div>
+                </div> */}
             </section>
 
             {/* Info Cards Section */}
