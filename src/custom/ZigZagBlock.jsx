@@ -3,15 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/basic/Button";
 import { BlockTitle } from "../components/typography";
 
-export default function ZigZagBlock({ title, data }) {
+export default function ZigZagBlock({ title, desc, data }) {
     let navigate = useNavigate();
     return (
         <section className="py-20 px-6 bg-gray-50">
             <div className="max-w-6xl mx-auto">
                 <BlockTitle title={title} />
+                <p className="text-sm text-center">{desc}</p>
 
-                <div className="mt-5 space-y-12">
-                    {data.map((item, index) => (
+                <div className="mt-10 space-y-12">
+                    {data?.map((item, index) => (
                         <div
                             key={index}
                             className="grid md:grid-cols-2 gap-8 items-stretch bg-white rounded-xl shadow hover:shadow-md transition-all overflow-hidden"
@@ -32,7 +33,7 @@ export default function ZigZagBlock({ title, data }) {
                             {/* Content Block */}
                             <div className="flex flex-col justify-center p-8">
                                 <p className="text-sm text-blue-600 font-semibold mb-2 uppercase">
-                                    {item?.subDesc}
+                                    {item?.subTitle}
                                 </p>
                                 <h3 className="text-2xl font-semibold mb-4 text-gray-900">
                                     {item?.title}
@@ -40,13 +41,16 @@ export default function ZigZagBlock({ title, data }) {
                                 <p className="text-gray-600 mb-6">
                                     {item?.desc}
                                 </p>
-                                <Button
-                                    className="rounded self-start"
-                                    label={item?.cta}
-                                    onClick={() =>
-                                        item?.slug && navigate(`/${item?.slug}`)
-                                    }
-                                />
+                                {item?.cta && (
+                                    <Button
+                                        className="rounded self-start"
+                                        label={item?.cta}
+                                        onClick={() =>
+                                            item?.slug &&
+                                            navigate(`/${item?.slug}`)
+                                        }
+                                    />
+                                )}
                             </div>
                         </div>
                     ))}

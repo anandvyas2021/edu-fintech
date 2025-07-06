@@ -1,4 +1,4 @@
-import { BlockTitle } from "../../../components/typography";
+import { BlockTitle } from "../../../../components/typography";
 
 export default function Benefits() {
     const stats = [

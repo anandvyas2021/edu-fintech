@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, X, ChevronDown } from "lucide-react";
 
-import { subscriptionPlans, planComparisonData } from "../../utils/dummy";
+import TrustedStats from "../../custom/TrustedStats";
+import DemoRequestForm from "../../custom/DemoRequestForm";
+
 import Button from "../../components/basic/Button";
+import { subscriptionPlans, planComparisonData } from "../../utils/dummy";
 
 export default function SubscriptionPlans() {
     const [showComparison, setShowComparison] = useState(false);
-
     let navigate = useNavigate();
 
     const renderCell = (value) => {
@@ -55,7 +57,7 @@ export default function SubscriptionPlans() {
                             className="btn-primary w-full"
                             label={plan?.cta}
                             onClick={() =>
-                                plan?.desc && navigate(`/${plan?.slug}`)
+                                plan?.slug && navigate(`/${plan?.slug}`)
                             }
                         />
                     </div>
@@ -124,6 +126,8 @@ export default function SubscriptionPlans() {
                     </div>
                 )}
             </section>
+            <TrustedStats />
+            <DemoRequestForm />
         </div>
     );
 }

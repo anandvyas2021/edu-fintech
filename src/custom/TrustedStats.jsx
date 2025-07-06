@@ -1,6 +1,6 @@
 import Slider from "react-slick";
-import { trustedBrands } from "../../../utils/dummy";
-import { BlockTitle } from "../../../components/typography";
+import { trustedBrands } from "../utils/dummy";
+import { BlockTitle } from "../components/typography";
 
 export default function TrustedStats() {
     const settings = {
@@ -19,7 +19,7 @@ export default function TrustedStats() {
         <>
             <section className="bg-white py-16 px-6 overflow-hidden">
                 <div className="max-w-6xl mx-auto text-center mb-10">
-                    <BlockTitle title=" Trusted by leading brands" />
+                    <BlockTitle title=" Trusted by millions" />
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         Our platform is backed by some of the most respected
                         companies in the world.

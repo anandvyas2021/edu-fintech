@@ -1,5 +1,14 @@
+import {
+    UserCheck,
+    BookOpenCheck,
+    CalendarCheck,
+    Route,
+    Handshake,
+    BarChart3,
+} from "lucide-react";
 import webinarDummy from "../assets/webinarDummy.jpg";
 import heroBg from "../assets/heroBg.jpg";
+import { addToCartHandler } from "./api/helpers";
 
 export const trustedBrands = [
     {
@@ -28,38 +37,158 @@ export const trustedBrands = [
     },
 ];
 
-export const enterpriseFeatures = [
+export const whatSetsTeamsApart = [
     {
-        subDesc: "LEARNING PLATFORM",
-        title: "Assign and Track Employee Coursework",
-        desc: "Our intuitive Learning Platform helps you manage every aspect of your company’s training and continuing education initiatives. Assign courses and Learning Paths to individual employees or teams. Track continuing education credits, see overall course progress, and download certificates — all conveniently in your dashboard.",
+        icon: UserCheck,
+        title: "Quality Content and Presenters",
+        description:
+            "We produce top-quality training by strictly vetting course content and partnering with trusted experts in their field.",
+    },
+    {
+        icon: BookOpenCheck,
+        title: "Breadth of Curriculum",
+        description:
+            "Covering 30+ subject matters with 13,000+ training products to improve hard & soft skills and fill knowledge gaps.",
+    },
+    {
+        icon: CalendarCheck,
+        title: "New Courses",
+        description:
+            "Regular updates with 100+ live courses added monthly for your company’s training & development initiatives.",
+    },
+    {
+        icon: Route,
+        title: "Learning Paths",
+        description:
+            "Track progress and create personalized training paths to meet employees' individual development needs.",
+    },
+    {
+        icon: Handshake,
+        title: "Customer Success",
+        description:
+            "Our success team helps craft a training strategy for long-term success, supporting you every step of the way.",
+    },
+    {
+        icon: BarChart3,
+        title: "CE Tracking & Reporting",
+        description:
+            "Easily track employee progress and earn CE credits for certifications like CLE, CPE, SHRM, HRCI, and others.",
+    },
+];
+export const whatSetsIndividualsApart = [
+    {
+        icon: UserCheck,
+        title: "Quality Content and Presenters",
+        description:
+            "We produce top-quality training by strictly vetting course content and partnering with trusted experts in their field.",
+    },
+    {
+        icon: BookOpenCheck,
+        title: "Breadth of Curriculum",
+        description:
+            "Covering 30+ subject matters with 13,000+ training products to improve hard & soft skills and fill knowledge gaps.",
+    },
+    {
+        icon: CalendarCheck,
+        title: "New Courses",
+        description:
+            "Regular updates with 100+ live courses added monthly for your company’s training & development initiatives.",
+    },
+    {
+        icon: Route,
+        title: "Learning Paths",
+        description:
+            "Track progress and create personalized training paths to meet employees' individual development needs.",
+    },
+    {
+        icon: Handshake,
+        title: "Customer Success",
+        description:
+            "Our success team helps craft a training strategy for long-term success, supporting you every step of the way.",
+    },
+    {
+        icon: BarChart3,
+        title: "CE Tracking & Reporting",
+        description:
+            "Easily track employee progress and earn CE credits for certifications like CLE, CPE, SHRM, HRCI, and others.",
+    },
+];
+
+export const individualFeatures = [
+    {
+        subTitle: "Why Lorman",
+        title: "All The Training You Need",
+        desc: "The All-Access Pass gives you unlimited access to everything in our Learning Library. Choose from nearly 4,000 continuing education courses across a variety of topics, including certifications, CE credits, skills training, and more. With over 12,000 total resources and new courses added each month, you’ll find the training you need with Lorman.",
         image: "https://source.unsplash.com/600x400/?training,corporate",
-        cta: "Learning Platform",
+        cta: "Browse Courses",
+        slug: "training",
+    },
+    {
+        subTitle: "LEARNING PLATFORM",
+        title: "Track Your Learning Goals",
+        desc: "Manage every aspect of your learning journey to reach your professional development goals with our intuitive Learning Platform. See current courses in progress, courses you’ve finished, and all of your earned CE credits. Access the Learning Platform from your pocket and learn where you want, when you want, on desktop or mobile.",
+        image: "https://source.unsplash.com/600x400/?training,corporate",
+    },
+    {
+        subTitle: "LEARNING PATHS",
+        title: "Master Your Skills",
+        desc: "Determine goals and create a clear path of required courses to enhance core knowledge areas with our Learning Paths. We work with our members to create custom learning and development routes to help enhance core skills or knowledge areas to achieve specific goals. Track your progress along the way and receive a Lorman certificate once completed.",
+        image: "https://source.unsplash.com/600x400/?career,growth",
+        cta: "View Paths",
         slug: "learning-path",
     },
     {
-        subDesc: "LEARNING PATHS",
+        subTitle: "TRAINING FORMATS",
+        title: "Flexible Course Delivery",
+        desc: "Learn at your own pace – however you want, wherever you want — with a variety of learning formats. Engage with Lorman's continuing education programs through live webinars, on-demand courses, white papers, audio recordings, and more.",
+        image: "https://source.unsplash.com/600x400/?education,custom",
+        cta: "Browse Courses",
+        slug: "training",
+    },
+    {
+        subTitle: "CERTIFICATION & COMPLIANCE",
+        title: "Easily Earn CE Credits",
+        desc: "Stay compliant and up to date on mandatory CE credits and professional certifications with Lorman. We work with nearly 100 accreditation agencies to provide CE credit to licensed professionals nationwide across numerous industries. Receive certifications including CLE, CPE, SHRM, HRCI, ENG, and others.",
+        image: "https://source.unsplash.com/600x400/?software,team",
+    },
+];
+export const enterpriseFeatures = [
+    {
+        subTitle: "Why Lorman",
+        title: "Train Your Entire Staff",
+        desc: "Lorman provides training for professional licensing needs, upskilling to drive performance and employee retention, and compliance with ever-changing federal and state laws. The Lorman Learning Library has nearly 4,000 courses and 12,000 total resources with new courses added each month.",
+        image: "https://source.unsplash.com/600x400/?training,corporate",
+        cta: "Browse Courses",
+        slug: "training",
+    },
+    {
+        subTitle: "LEARNING PLATFORM",
+        title: "Assign and Track Employee Coursework",
+        desc: "Our intuitive Learning Platform helps you manage every aspect of your company’s training and continuing education initiatives. Assign courses and Learning Paths to individual employees or teams. Track continuing education credits, see overall course progress, and download certificates — all conveniently in your dashboard.",
+        image: "https://source.unsplash.com/600x400/?training,corporate",
+    },
+    {
+        subTitle: "LEARNING PATHS",
         title: "Fill Knowledge Gaps",
         desc: "We work with our members to determine goals and create customized Learning Solutions for their workforce. Managers can create teams or employee Learning Paths to help enhance core skills or address knowledge areas needed to meet company training and development goals.",
         image: "https://source.unsplash.com/600x400/?career,growth",
         cta: "Learning Paths",
+        slug: "learning-path",
     },
     {
-        subDesc: "A TRUSTED PARTNER",
+        subTitle: "A TRUSTED PARTNER",
         title: "Request Custom Courses",
         desc: "Have a course in mind for your employees that you don’t see on our site? Our in-house production team can create custom employee training solutions that fit your organization’s needs. We work with you to achieve your company’s training and development goals. Lorman is not just a content provider — we are a true training partner.",
         image: "https://source.unsplash.com/600x400/?education,custom",
-        cta: "Request Courses",
     },
     {
-        subDesc: "LMS INTEGRATION",
+        subTitle: "LMS INTEGRATION",
         title: "Integrate With Your LMS",
         desc: "Integrate our huge library of content and training programs with your LMS. Simply download SCORM files for any course or resource in our library or opt for chosen learning management system integration. We’re here every step of the way to help make your corporate training initiatives as easy as possible.",
         image: "https://source.unsplash.com/600x400/?software,team",
-        cta: "Learn More",
     },
     {
-        subDesc: "CONCENTRATE EFFORTS",
+        subTitle: "CONCENTRATE EFFORTS",
         title: "Unify Company Training and Development",
         desc: "Centralizing your company training is the most logical and cost-effective approach to employee learning and development. Oversee your company’s training programs and avoid the hidden costs of paying separate vendors for individual courses.",
         image: "https://source.unsplash.com/600x400/?planning,documents",
@@ -780,6 +909,7 @@ export const subscriptionPlans = [
         price: "",
         desc: "Compliance & Upskilling courses available in on-demand and live formats.",
         cta: "Explore Courses",
+        slug: "training",
         features: [
             "Compliance & Upskilling",
             "OnDemand & Live Courses",
@@ -793,6 +923,7 @@ export const subscriptionPlans = [
         price: "$699 / year",
         desc: "Comprehensive professional business training through the year for individuals.",
         cta: "Buy Now",
+        handler: () => addToCartHandler(),
         features: [
             "Unlimited Course Subscription",
             "Unlimited Learning Paths",
@@ -822,6 +953,7 @@ export const subscriptionPlans = [
         price: "Custom Quote",
         desc: "Lorman can help you fulfill your team's specific training needs.",
         cta: "Contact Sales",
+        slug: "demo",
         features: [
             "Custom Course Creation",
             "Virtual Training",

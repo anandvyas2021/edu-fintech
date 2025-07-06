@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../../components/basic/Button";
 import HoverCard from "../../../components/layouts/HoverCard";
 
 export default function HeroSection() {
@@ -12,7 +11,7 @@ export default function HeroSection() {
             slug: "team-and-enterprise",
         },
         {
-            title: "Professionals",
+            title: "Professional",
             desc: "Unlimited access to Lorman’s Learning Library for your personal training and development.",
             slug: "training",
         },

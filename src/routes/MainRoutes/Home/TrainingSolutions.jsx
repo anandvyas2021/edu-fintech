@@ -6,6 +6,7 @@ import {
     CheckCircle,
     Award,
 } from "lucide-react";
+import { BlockTitle } from "../../../components/typography";
 
 const features = [
     {
@@ -50,12 +51,15 @@ export default function TrainingSolutions() {
     return (
         <section className="bg-white py-20 px-6">
             <div className="max-w-6xl mx-auto text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                     Training Solutions That Help You{" "}
                     <span className="text-blue-600 underline underline-offset-4 decoration-2">
                         Succeed
                     </span>
-                </h2>
+                </h2> */}
+                <BlockTitle
+                    title={"Training Solutions That Help You Succeed"}
+                />
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">

@@ -1,5 +1,5 @@
 import { BookOpenCheck } from "lucide-react";
-import { BlockTitle } from "../../../components/typography";
+import { BlockTitle } from "../components/typography";
 
 export default function RecentBlogs() {
     const blogs = [

@@ -1,7 +1,8 @@
 import HeroSection from "./HeroSection";
 import TrainingSolutions from "./TrainingSolutions";
-import TrustedStats from "./TrustedStats";
 import LearnFromBest from "./LearnFromBest";
+
+import TrustedStats from "../../../custom/TrustedStats";
 import FooterAppointCard from "../../../components/cards/FooterAppointCard";
 
 export default function Home() {

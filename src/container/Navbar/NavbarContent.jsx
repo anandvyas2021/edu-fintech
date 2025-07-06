@@ -9,40 +9,81 @@ const navItems = [
     {
         name: "Training Solutions",
         hasDropdown: true,
-        items: ["Corporate Training", "Workshops", "Seminars"],
+        parentRoute: "/training/solutions",
+        items: [
+            {
+                label: "Teams & Enterprise",
+                desc: "Training solutions to support your workforce's continuing education, compliance, and upskilling needs.",
+                slug: "team-and-enterprise",
+            },
+            {
+                label: "Professionals",
+                desc: "Unlimited access to Leaning library for your personal training and development",
+                slug: "individual",
+            },
+            // { label: "", desc: "" },
+        ],
     },
     {
         name: "Courses",
-        hasDropdown: true,
+        // hasDropdown: true,
         items: ["Frontend", "Backend", "Fullstack"],
     },
     {
         name: "Resources",
         hasDropdown: true,
-        items: ["Blog", "Case Studies", "E-books"],
+        parentRoute: "",
+        items: [
+            {
+                label: "Professional Directory",
+                desc: "Explore our directory of subject-matter experts to connect with a qualified professional in your field",
+                slug: "professionals",
+            },
+            {
+                label: "Blog",
+                desc: "Your one-stop shop for industry news, keen insights, and continuing education resources",
+                slug: "blog",
+            },
+            {
+                label: "Articles & White Papers",
+                desc: "Digital resources across a variety of topics to support and enhance your online learning",
+                slug: "",
+            },
+        ],
     },
-    { name: "Plans", slug: "/plans", hasDropdown: false },
+    { name: "Plans", slug: "plans", hasDropdown: false },
 ];
-
-const Dropdown = ({ items }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 10 }}
-        className="absolute top-full mt-2 w-56 bg-white shadow-lg rounded-lg p-4 z-50"
-    >
-        {items.map((item, i) => (
-            <div key={i} className="hover:text-blue-600 cursor-pointer py-1">
-                {item}
-            </div>
-        ))}
-    </motion.div>
-);
 
 export default function NavbarContent(props) {
     const [openDropdown, setOpenDropdown] = useState(null);
 
     const navigate = useNavigate();
+
+    const Dropdown = ({ items, parentRoute }) => (
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="absolute top-full flex gap-2 mt-2 min-w-full bg-white shadow-lg rounded-lg p-4 py-6 z-50"
+        >
+            {items?.map((item, i) => (
+                <div
+                    className="group p-2 flex-1 sm:flex-none w-[300px] rounded-md cursor-pointer bg-blue-50"
+                    onClick={() =>
+                        item?.slug && navigate(`${parentRoute}/${item?.slug}`)
+                    }
+                >
+                    <div
+                        key={i}
+                        className="group-hover:text-blue-600 font-semibold mb-1 cursor-pointer py-1"
+                    >
+                        {item?.label}
+                    </div>
+                    <p className="text-xs">{item?.desc}</p>
+                </div>
+            ))}
+        </motion.div>
+    );
 
     return (
         <nav className="w-full px-6 py-4 bg-white shadow-md flex items-center justify-between relative z-50">
@@ -55,7 +96,7 @@ export default function NavbarContent(props) {
             </div>
 
             {/* Nav Links */}
-            <div className="flex space-x-6 relative">
+            <div className="flex space-x-6 relative h-full">
                 {navItems?.map((item, index) => (
                     <div
                         key={index}
@@ -68,13 +109,16 @@ export default function NavbarContent(props) {
                         }
                         onClick={() => item?.slug && navigate(item?.slug)}
                     >
-                        <div className="flex items-center space-x-1 cursor-pointer font-medium text-gray-700 hover:text-blue-600">
-                            <span>{item.name}</span>
+                        <div className="flex items-center space-x-1 cursor-pointer h-full font-medium text-gray-700 hover:text-blue-600">
+                            <div className="h-full">{item.name}</div>
                             {item.hasDropdown && <ChevronDown size={16} />}
                         </div>
                         <AnimatePresence>
                             {openDropdown === index && (
-                                <Dropdown items={item.items} />
+                                <Dropdown
+                                    items={item.items}
+                                    parentRoute={item?.parentRoute}
+                                />
                             )}
                         </AnimatePresence>
                     </div>
