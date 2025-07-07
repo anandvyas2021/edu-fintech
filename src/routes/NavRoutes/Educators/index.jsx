@@ -11,7 +11,7 @@ import {
     Landmark,
     Wrench,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { BlockTitle } from "../../../components/typography";
 import Button from "../../../components/basic/Button";
@@ -49,7 +49,9 @@ export default function Educators() {
                         <Button
                             className=" border-blue-600 !h-full px-6 py-3.5"
                             label={"Search"}
-                            onClick={() => navigate("/professionals/list")}
+                            onClick={() =>
+                                navigate("/professionals/list?search=")
+                            }
                         />
                     </div>
                 </div>
