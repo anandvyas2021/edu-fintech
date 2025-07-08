@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { educators } from "../../../../utils/dummy";
+import { useGetAllEducatorsQuery } from "../../../../app/features/educators/educatorApiSlice";
 
 export default function Faculty({ faculty }) {
+    const { data, error, isLoading } = useGetAllEducatorsQuery();
     let [state, setState] = useState({ educatorsData: [] });
 
     useEffect(() => {
-        let filteredData = educators?.filter((educator) =>
+        let filteredData = data?.filter((educator) =>
             faculty?.some((item) => item?._id === educator?._id)
         );
         setState((prev) => ({ ...prev, educatorsData: filteredData }));

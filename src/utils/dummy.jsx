@@ -6,7 +6,7 @@ import {
     Handshake,
     BarChart3,
 } from "lucide-react";
-import webinarDummy from "../assets/webinarDummy.jpg";
+
 import heroBg from "../assets/heroBg.jpg";
 import { addToCartHandler } from "./api/helpers";
 
@@ -199,11 +199,8 @@ export const enterpriseFeatures = [
 
 export const mockWebinars = [
     {
-        _id: 1,
-        category_id: 101,
         title: "Best Practices for Communicating Performance Expectations",
         slug: "best-practices-for-communicating-performance-expectations",
-        image: webinarDummy,
         description:
             "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
         date: "Jun 30 2025",
@@ -225,13 +222,7 @@ This information will also help managers understand how to bring their efforts a
     <li>You will be able to review how performance expectations and goals are developed.</li>
     <li>You will be able to explain how to conduct performance expectation and goal discussions.</li>
 </ul>`,
-            faculty: [
-                {
-                    _id: 1,
-                    name: "William J. Rothwell",
-                    image: "https://your-real-image-link.com/faculty.jpg",
-                },
-            ],
+            faculty: ["686d0631b138441e547bab44"],
         },
         agenda: `
 <p><strong>The What and Why of Communicating Performance Expectations and Goals</strong></p>
@@ -348,31 +339,10 @@ This information will also help managers understand how to bring their efforts a
 </p>`,
         },
         topics: ["Workplace Compliance"],
-        relatedTrainings: [
-            {
-                _id: 2,
-                title: "Employee Code of Conduct Essentials",
-                type: "OnDemand Course",
-            },
-            {
-                _id: 3,
-                title: "Punctuation Basics for Business Writing",
-                type: "Live Webinar",
-                date: "July 28, 2025",
-            },
-            {
-                _id: 4,
-                title: "Running Effective Board Meetings",
-                type: "OnDemand Course",
-            },
-        ],
     },
     {
-        _id: 2,
-        category_id: 101,
         title: "Microsoft® Outlook Tips and Tricks",
         slug: "microsoft-outlook-tips-and-tricks",
-        image: webinarDummy,
         description:
             "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
         date: "June 30 2025",
@@ -396,13 +366,7 @@ This information will also help managers understand how to bring their efforts a
     <li>You will be able to review how performance expectations and goals are developed.</li>
     <li>You will be able to explain how to conduct performance expectation and goal discussions.</li>
 </ul>`,
-            faculty: [
-                {
-                    _id: 1,
-                    name: "William J. Rothwell",
-                    image: "https://your-real-image-link.com/faculty.jpg",
-                },
-            ],
+            faculty: ["686d0652b138441e547bab47"],
         },
         agenda: `
 <p><strong>The What and Why of Communicating Performance Expectations and Goals</strong></p>
@@ -518,31 +482,10 @@ This information will also help managers understand how to bring their efforts a
     human resource managers, presidents, and vice presidents.
 </p>`,
         },
-        relatedTrainings: [
-            {
-                _id: 2,
-                title: "Employee Code of Conduct Essentials",
-                type: "OnDemand Course",
-            },
-            {
-                _id: 3,
-                title: "Punctuation Basics for Business Writing",
-                type: "Live Webinar",
-                date: "July 28, 2025",
-            },
-            {
-                _id: 4,
-                title: "Running Effective Board Meetings",
-                type: "OnDemand Course",
-            },
-        ],
     },
     {
-        _id: 3,
-        category_id: 102,
         title: "Accurately Classifying Your Products for Sales Tax",
         slug: "accurately-classifying-your-products-for-sales-tax",
-        image: webinarDummy,
         description:
             "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
         date: "Jul 8",
@@ -566,13 +509,7 @@ This information will also help managers understand how to bring their efforts a
     <li>You will be able to review how performance expectations and goals are developed.</li>
     <li>You will be able to explain how to conduct performance expectation and goal discussions.</li>
 </ul>`,
-            faculty: [
-                {
-                    _id: 1,
-                    name: "William J. Rothwell",
-                    image: "https://your-real-image-link.com/faculty.jpg",
-                },
-            ],
+            faculty: ["686d0631b138441e547bab44"],
         },
         agenda: `
 <p><strong>The What and Why of Communicating Performance Expectations and Goals</strong></p>
@@ -688,31 +625,10 @@ This information will also help managers understand how to bring their efforts a
     human resource managers, presidents, and vice presidents.
 </p>`,
         },
-        relatedTrainings: [
-            {
-                _id: 2,
-                title: "Employee Code of Conduct Essentials",
-                type: "OnDemand Course",
-            },
-            {
-                _id: 3,
-                title: "Punctuation Basics for Business Writing",
-                type: "Live Webinar",
-                date: "July 28, 2025",
-            },
-            {
-                _id: 4,
-                title: "Running Effective Board Meetings",
-                type: "OnDemand Course",
-            },
-        ],
     },
     {
-        _id: 4,
-        category_id: 104,
         title: "Cross Cultural Collaboration for Effective Teams",
         slug: "cross-cultural-collaboration-for-effective-teams",
-        image: webinarDummy,
         description:
             "Adopt the best practices that will make diving into your inbox less painful and far less time consuming.",
         date: "Jul 8 2025",
@@ -735,13 +651,7 @@ This information will also help managers understand how to bring their efforts a
     <li>You will be able to review how performance expectations and goals are developed.</li>
     <li>You will be able to explain how to conduct performance expectation and goal discussions.</li>
 </ul>`,
-            faculty: [
-                {
-                    _id: 1,
-                    name: "William J. Rothwell",
-                    image: "https://your-real-image-link.com/faculty.jpg",
-                },
-            ],
+            faculty: ["686d0670b138441e547bab4a"],
         },
         agenda: `
 <p><strong>The What and Why of Communicating Performance Expectations and Goals</strong></p>
@@ -857,49 +767,6 @@ This information will also help managers understand how to bring their efforts a
     human resource managers, presidents, and vice presidents.
 </p>`,
         },
-        relatedTrainings: [
-            {
-                _id: 2,
-                title: "Employee Code of Conduct Essentials",
-                type: "OnDemand Course",
-            },
-            {
-                _id: 3,
-                title: "Punctuation Basics for Business Writing",
-                type: "Live Webinar",
-                date: "July 28, 2025",
-            },
-            {
-                _id: 4,
-                title: "Running Effective Board Meetings",
-                type: "OnDemand Course",
-            },
-        ],
-    },
-];
-
-export const educators = [
-    {
-        _id: 1,
-        name: "William J. Rothwell",
-        qualifications: "Ph.D., SPHR, SHRM-SCP, RODC, CPTD Fellow",
-        image: "",
-        company: "Rothwell & Associates, Inc.",
-        about: `
-    <div>
-        <ul style="list-style-type:square;">
-            <li>President/Rothwell & Associates, Inc. and Rothwell & Associates, LLC</li>
-            <li>Distinguished Professor at The Penn State University</li>
-            <li>50 years of HR experience in government, multinational business, and owner of 5 small businesses</li>
-            <li>Author of "Motivated to Stay" — 100 research-based ways to reduce employee turnover</li>
-            <li>Author of 170 books on HR and public speaker of 1,600 professional talks and seminars in 15 nations</li>
-            <li>Member of the Society for Human Resource Management (SHRM) and other HR organizations</li>
-            <li>Ph.D. / University of Illinois at Urbana-Champaign</li>
-            <li>MBA / University of Illinois at Springfield</li>
-            <li>Contact: <a href="mailto:Wjr9@psu.edu">Wjr9@psu.edu</a> / 814-441-4087</li>
-        </ul>
-    </div>
-`,
     },
 ];
 

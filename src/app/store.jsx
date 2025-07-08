@@ -6,6 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./features/api/apiSlice";
 
 import authReducer from "./features/auth/authSlice";
+import educatorReducer from "./features/educators/educatorSlice";
 // import userReducer from "./features/user/userSlice";
 // import transactionReducer from "./features/transactions/transactionSlice";
 
@@ -17,6 +18,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    educator: educatorReducer,
     // user: userReducer,
     // transactions: transactionReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,

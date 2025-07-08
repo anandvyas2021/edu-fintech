@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://your-backend-api.com/api/v1", // Replace with your API URL
+        baseUrl: "https://edu-fintech-backend.onrender.com/edu-fintech/api", // Replace with your API URL
         prepareHeaders: (headers, { getState }) => {
             const token = getState().auth?.accessToken;
             if (token) {

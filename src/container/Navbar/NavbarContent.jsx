@@ -25,6 +25,7 @@ const navItems = [
     {
         name: "Courses",
         items: ["Frontend", "Backend", "Fullstack"],
+        slug: "training",
     },
     {
         name: "Resources",

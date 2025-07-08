@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { mockWebinars } from "../../utils/dummy";
+import webinarDummy from "../../assets/webinarDummy.jpg";
 import { Heart, HeartOff, HeartIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useGetAllWebinarsQuery } from "../../app/features/webinars/webinarApiSlice";
 
 export default function WebinarList({
     filters,
@@ -17,8 +18,10 @@ export default function WebinarList({
 
     const navigate = useNavigate();
 
+    const { data: webinars, isLoading } = useGetAllWebinarsQuery();
     useEffect(() => {
-        let results = [...mockWebinars];
+        let results = webinars?.data;
+        console.log("result", results);
 
         if (filters.topics.length) {
             results = results.filter((w) =>
@@ -57,8 +60,8 @@ export default function WebinarList({
 
     const indexOfLast = currentPage * webinarsPerPage;
     const indexOfFirst = indexOfLast - webinarsPerPage;
-    const currentWebinars = filteredWebinars.slice(indexOfFirst, indexOfLast);
-    const totalPages = Math.ceil(filteredWebinars.length / webinarsPerPage);
+    const currentWebinars = filteredWebinars?.slice(indexOfFirst, indexOfLast);
+    const totalPages = Math.ceil(filteredWebinars?.length / webinarsPerPage);
 
     return (
         <div>
@@ -69,7 +72,7 @@ export default function WebinarList({
                         : "grid-cols-1"
                 } gap-6`}
             >
-                {currentWebinars.map((item) => (
+                {currentWebinars?.map((item) => (
                     <div
                         key={item?._id}
                         className="group bg-white border rounded-xl shadow hover:shadow-lg transition overflow-hidden relative flex flex-col cursor-pointer"
@@ -79,8 +82,8 @@ export default function WebinarList({
                     >
                         <div className="relative">
                             <img
-                                src={item?.image}
-                                alt={item?.title}
+                                src={item?.image ?? webinarDummy}
+                                alt={item?.slug}
                                 className="w-full h-40 object-cover"
                             />
 
@@ -157,8 +160,8 @@ export default function WebinarList({
             <div className="flex justify-between items-center mt-6 text-sm">
                 <span>
                     Showing {indexOfFirst + 1} -{" "}
-                    {Math.min(indexOfLast, filteredWebinars.length)} of{" "}
-                    {filteredWebinars.length} results
+                    {Math.min(indexOfLast, filteredWebinars?.length)} of{" "}
+                    {filteredWebinars?.length} results
                 </span>
 
                 <div className="flex gap-2">

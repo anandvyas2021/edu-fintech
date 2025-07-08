@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { debounce } from "../../../utils/helpers";
 import InputField from "../../../components/basic/InputField";
+import { useGetAllEducatorsQuery } from "../../../app/features/educators/educatorApiSlice";
 
 const specialtiesList = [
     { label: "Human Resources", value: "human-resources" },
@@ -31,6 +32,8 @@ export default function EducatorsList() {
     });
 
     let navigate = useNavigate();
+    const { data, error, isLoading } = useGetAllEducatorsQuery();
+    console.log("data", data, isLoading);
 
     // Debounced Search Function
     const debouncedSearch = debounce((term) => {
@@ -66,35 +69,7 @@ export default function EducatorsList() {
         console.log("Fetching with:", { term, specialties, sort });
 
         // Dummy Data
-        setEducators([
-            {
-                id: 1,
-                name: "Adrienne Scheffey",
-                slug: "adrienne-scheffey",
-                title: "Shareholder at Burns, Figa & Will, P.C.",
-                image: "https://randomuser.me/api/portraits/women/1.jpg",
-            },
-            {
-                id: 2,
-                name: "Beth Dunning",
-                slug: "beth-dunning",
-                title: "Consultant",
-                image: "https://randomuser.me/api/portraits/women/2.jpg",
-            },
-            {
-                id: 3,
-                name: "Joseph Scarano",
-                slug: "joseph-scarano",
-                title: "CEO at Araize",
-                image: "https://randomuser.me/api/portraits/men/3.jpg",
-            },
-            {
-                id: 4,
-                name: "Beth Dunning",
-                title: "Consultant",
-                image: "https://randomuser.me/api/portraits/women/2.jpg",
-            },
-        ]);
+        setEducators(educators);
     };
 
     return (
@@ -179,7 +154,7 @@ export default function EducatorsList() {
                 <div className="flex-1">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-lg font-semibold text-gray-700">
-                            {educators?.length} Results
+                            {data?.data?.length} Results
                         </h2>
                         <select
                             className="border px-3 py-1.5 rounded-md focus:outline-blue-500"
@@ -193,7 +168,7 @@ export default function EducatorsList() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                        {educators?.map((edu) => (
+                        {data?.data?.map((edu) => (
                             <div
                                 key={edu?._id}
                                 className="group bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition cursor-pointer"
