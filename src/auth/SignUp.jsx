@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { useSignupMutation } from "../app/features/auth/authApiSlice";
+import { setCredentials } from "../app/features/auth/authSlice";
 
 import Button from "../components/basic/Button";
 import InputField from "../components/basic/InputField";
 import Dropdown from "../components/basic/Dropdown";
 import { BlockTitle } from "../components/typography";
 
-import { postAPI } from "../utils/api";
-import { authURL } from "../utils/api/urls";
-
 export default function SignUp() {
-    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [signup, { isLoading: apiLoading }] = useSignupMutation();
     const {
         control,
         handleSubmit,
@@ -18,16 +23,19 @@ export default function SignUp() {
         watch,
     } = useForm();
 
-    const onSubmit = (data) => {
-        setLoading(false);
-        console.log("Form Submitted:", data);
-        postAPI(authURL?.SIGN_UP, { data })
-            .then((res) => {
-                console.log(res);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+    const onSubmit = async (data) => {
+        try {
+            const res = await signup(data).unwrap();
+
+            // Optionally store token & user
+            dispatch(setCredentials(res)); // only if API returns token/user
+
+            console.log("Signup success:", res);
+            navigate(-1);
+        } catch (err) {
+            console.error("Signup failed:", err?.data?.message || err);
+            // Optionally show error message
+        }
     };
 
     const companySize = [
@@ -297,7 +305,7 @@ export default function SignUp() {
                             type="submit"
                             label="Create Free Account"
                             className="w-full"
-                            loading={loading}
+                            loading={apiLoading}
                         />
                     </div>
                 </form>

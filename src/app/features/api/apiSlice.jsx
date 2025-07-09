@@ -12,7 +12,7 @@ export const apiSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ["User", "Transaction"], // Optional, for auto-refetching
+    tagTypes: ["User", "Auth"], // Optional, for auto-refetching
     endpoints: (builder) => ({
         getUserDetails: builder.query({
             query: () => "/user/details",

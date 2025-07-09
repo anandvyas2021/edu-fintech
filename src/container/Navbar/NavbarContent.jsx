@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, UserCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/basic/Button";
@@ -54,6 +54,8 @@ const navItems = [
 
 export default function NavbarContent() {
     const [openDropdown, setOpenDropdown] = useState(null);
+    const [user, setUser] = useState(null);
+    const [showUserMenu, setShowUserMenu] = useState(false);
     const navigate = useNavigate();
 
     const Dropdown = ({ items, parentRoute }) => (
@@ -137,8 +139,8 @@ export default function NavbarContent() {
                 </AnimatePresence>
             </div>
 
-            {/* Search + Button */}
-            <div className="flex items-center space-x-4">
+            {/* Search + Button + User Auth */}
+            <div className="flex items-center space-x-4 relative">
                 <input
                     type="text"
                     placeholder="Search..."
@@ -148,6 +150,54 @@ export default function NavbarContent() {
                     label="Request Demo"
                     onClick={() => navigate("/demo")}
                 />
+
+                {user ? (
+                    <div className="relative">
+                        <div
+                            onClick={() => setShowUserMenu(!showUserMenu)}
+                            className="cursor-pointer"
+                        >
+                            <UserCircle className="text-blue-600" size={28} />
+                        </div>
+                        {showUserMenu && (
+                            <div className="absolute right-0 mt-2 w-40 bg-white shadow-md border rounded-md z-50">
+                                <div
+                                    onClick={() => {
+                                        setShowUserMenu(false);
+                                        navigate("/profile");
+                                    }}
+                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                >
+                                    Profile
+                                </div>
+                                <div
+                                    onClick={() => {
+                                        setShowUserMenu(false);
+                                        navigate("/orders");
+                                    }}
+                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                >
+                                    Orders
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className="flex items-center space-x-2">
+                        <button
+                            onClick={() => navigate("/auth/login")}
+                            className="text-sm px-3 py-1 rounded hover:text-blue-600"
+                        >
+                            Login
+                        </button>
+                        <button
+                            onClick={() => navigate("/auth/sign-up")}
+                            className="text-sm px-3 py-1 rounded hover:text-blue-600"
+                        >
+                            Sign Up
+                        </button>
+                    </div>
+                )}
             </div>
         </nav>
     );

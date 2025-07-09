@@ -3,8 +3,19 @@ import { apiSlice } from "../api/apiSlice";
 export const webinarApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllWebinars: builder.query({
-            query: () => "/webinars",
-            providesTags: ["Webinar"],
+            // query: () => "/webinars",
+            // providesTags: ["Webinar"],
+            query: ({ page = 1, limit = 10 }) => `/webinars?page=${page}`,
+            providesTags: (result) =>
+                result?.data
+                    ? [
+                          ...result?.data?.data?.map((webinar) => ({
+                              type: "Webinar",
+                              id: webinar._id,
+                          })),
+                          { type: "Webinar", id: "LIST" },
+                      ]
+                    : [{ type: "Webinar", id: "LIST" }],
         }),
         getWebinarById: builder.query({
             query: (id) => `/webinars/${id}`,

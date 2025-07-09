@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import webinarDummy from "../../assets/webinarDummy.jpg";
 import { Heart, HeartOff, HeartIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useGetAllWebinarsQuery } from "../../app/features/webinars/webinarApiSlice";
 
 export default function WebinarList({
@@ -12,16 +12,28 @@ export default function WebinarList({
     favourites,
     toggleFavourite,
 }) {
-    const [filteredWebinars, setFilteredWebinars] = useState([]);
+    // const [filteredWebinars, setFilteredWebinars] = useState([]);
+    // const [webinars, setWebinars] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const webinarsPerPage = 6;
+    let [params, setParams] = useSearchParams();
+
+    let page = +(params?.get("page") ?? 1);
 
     const navigate = useNavigate();
 
-    const { data: webinars, isLoading } = useGetAllWebinarsQuery();
+    const { data: webinars, isLoading } = useGetAllWebinarsQuery({
+        page,
+        limit: 10,
+    });
+    console.log("page", page, webinars);
+
+    // useEffect(() => {
+    //     const { data, isLoading } = useGetAllWebinarsQuery();
+    //     console.log(data);
+    // }, [page]);
+
     useEffect(() => {
         let results = webinars?.data;
-        console.log("result", results);
 
         if (filters.topics.length) {
             results = results.filter((w) =>
@@ -54,14 +66,20 @@ export default function WebinarList({
             );
         }
 
-        setFilteredWebinars(results);
-        setCurrentPage(1);
+        // setFilteredWebinars(results);
+        // setCurrentPage(1);
     }, [filters, sort]);
 
-    const indexOfLast = currentPage * webinarsPerPage;
-    const indexOfFirst = indexOfLast - webinarsPerPage;
-    const currentWebinars = filteredWebinars?.slice(indexOfFirst, indexOfLast);
-    const totalPages = Math.ceil(filteredWebinars?.length / webinarsPerPage);
+    const handlePage = (key) => {
+        console.log(key);
+        setParams({
+            page: key === "next" ? page + 1 : page > 1 ? page - 1 : page,
+        });
+        // params.set(
+        //     "page",
+        //     key === "next" ? page + 1 : page > 1 ? page - 1 : page
+        // );
+    };
 
     return (
         <div>
@@ -72,7 +90,7 @@ export default function WebinarList({
                         : "grid-cols-1"
                 } gap-6`}
             >
-                {currentWebinars?.map((item) => (
+                {webinars?.data?.data?.map((item) => (
                     <div
                         key={item?._id}
                         className="group bg-white border rounded-xl shadow hover:shadow-lg transition overflow-hidden relative flex flex-col cursor-pointer"
@@ -159,28 +177,38 @@ export default function WebinarList({
             {/* Pagination */}
             <div className="flex justify-between items-center mt-6 text-sm">
                 <span>
-                    Showing {indexOfFirst + 1} -{" "}
-                    {Math.min(indexOfLast, filteredWebinars?.length)} of{" "}
-                    {filteredWebinars?.length} results
+                    Showing{" "}
+                    {webinars?.data?.pagination?.current_page > 1
+                        ? webinars?.data?.pagination?.current_page * 10 + 1
+                        : 1}{" "}
+                    -{" "}
+                    {webinars?.data?.data?.length +
+                        webinars?.data?.pagination?.current_page * 10}{" "}
+                    of {webinars?.data?.pagination?.total_count} results
                 </span>
 
                 <div className="flex gap-2">
                     <button
                         className="px-2 py-1 border rounded disabled:opacity-50"
                         disabled={currentPage === 1}
-                        onClick={() => setCurrentPage((p) => p - 1)}
+                        // onClick={() => setCurrentPage((p) => p - 1)}
+                        onClick={() => handlePage("prev")}
                     >
                         Prev
                     </button>
                     <span>
-                        {currentPage} / {totalPages || 1}
+                        {webinars?.data?.pagination?.current_page} /{" "}
+                        {webinars?.data?.pagination?.total_pages || 1}
                     </span>
                     <button
                         className="px-2 py-1 border rounded disabled:opacity-50"
-                        disabled={
-                            currentPage === totalPages || totalPages === 0
-                        }
-                        onClick={() => setCurrentPage((p) => p + 1)}
+                        // disabled={
+                        //     currentPage ===
+                        //         webinars?.data?.pagination?.total_pages ||
+                        //     webinars?.data?.pagination?.total_pages === 0
+                        // }
+                        // onClick={() => setCurrentPage((p) => p + 1)}
+                        onClick={() => handlePage("next")}
                     >
                         Next
                     </button>
