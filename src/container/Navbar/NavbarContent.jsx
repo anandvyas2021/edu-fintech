@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { ChevronDown, UserCircle } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { ChevronDown, LogOut, UserCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+
+import { persistor } from "../../app/store";
+import { logout } from "../../app/features/auth/authSlice";
+import { useLogoutMutation } from "../../app/features/auth/authApiSlice";
+
 import Button from "../../components/basic/Button";
+import Loader from "../../components/basic/Loader";
 
 const navItems = [
     {
@@ -54,9 +61,14 @@ const navItems = [
 
 export default function NavbarContent() {
     const [openDropdown, setOpenDropdown] = useState(null);
-    const [user, setUser] = useState(null);
     const [showUserMenu, setShowUserMenu] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { user, isLoggedIn } = useSelector((state) => state.auth);
+
+    console.log("auth", user, isLoggedIn);
+    const [logoutServer, { isLoading: apiLoading }] = useLogoutMutation();
 
     const Dropdown = ({ items, parentRoute }) => (
         <motion.div
@@ -81,6 +93,19 @@ export default function NavbarContent() {
             ))}
         </motion.div>
     );
+
+    const logoutHandler = async () => {
+        try {
+            await logoutServer(); // optional — skip if not needed
+        } catch (err) {
+            console.error("Server logout failed", err);
+        } finally {
+            dispatch(logout());
+            persistor.purge();
+            // navigate("/login");
+        }
+        dispatch(logout());
+    };
 
     return (
         <nav className="relative w-full h-[70px] px-6 flex items-center justify-between shadow-md z-50 bg-white">
@@ -151,7 +176,7 @@ export default function NavbarContent() {
                     onClick={() => navigate("/demo")}
                 />
 
-                {user ? (
+                {isLoggedIn ? (
                     <div className="relative">
                         <div
                             onClick={() => setShowUserMenu(!showUserMenu)}
@@ -160,24 +185,54 @@ export default function NavbarContent() {
                             <UserCircle className="text-blue-600" size={28} />
                         </div>
                         {showUserMenu && (
-                            <div className="absolute right-0 mt-2 w-40 bg-white shadow-md border rounded-md z-50">
-                                <div
-                                    onClick={() => {
-                                        setShowUserMenu(false);
-                                        navigate("/profile");
-                                    }}
-                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                >
-                                    Profile
-                                </div>
-                                <div
-                                    onClick={() => {
-                                        setShowUserMenu(false);
-                                        navigate("/orders");
-                                    }}
-                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                >
-                                    Orders
+                            <div className="absolute right-0 top-10 mt-2 w-60 shadow-xl border border-blue-200 rounded-md z-50 bg-gray-100">
+                                <div className="px-3 py-2">
+                                    <div className="capitalize">
+                                        Hello,{" "}
+                                        <span className="font-semibold text-blue-600">
+                                            {user?.first_name} {user?.last_name}
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    {/* <div
+                                        onClick={() => {
+                                            setShowUserMenu(false);
+                                            navigate("/profile");
+                                        }}
+                                        className="hover:bg-gray-400 cursor-pointer"
+                                    >
+                                        Profile
+                                    </div>
+                                    <div
+                                        onClick={() => {
+                                            setShowUserMenu(false);
+                                            navigate("/orders");
+                                        }}
+                                        className="hover:bg-gray-100 cursor-pointer"
+                                    >
+                                        Orders
+                                    </div> */}
+
+                                    <button
+                                        className={`group w-full p-1 rounded-lg flex justify-center ${
+                                            apiLoading
+                                                ? "hover:bg-red-100 cursor-not-allowed"
+                                                : "cursor-pointer"
+                                        }`}
+                                        disabled={apiLoading}
+                                        onClick={logoutHandler}
+                                    >
+                                        {apiLoading ? (
+                                            <Loader />
+                                        ) : (
+                                            <>
+                                                <LogOut className="group-hover:text-red-600" />
+                                                <p className="font-semibold group-hover:text-red-600">
+                                                    Logout
+                                                </p>
+                                            </>
+                                        )}
+                                    </button>
                                 </div>
                             </div>
                         )}

@@ -21,16 +21,39 @@ export default function SignUp() {
         handleSubmit,
         formState: { errors },
         watch,
+        reset,
     } = useForm();
 
     const onSubmit = async (data) => {
+        const {
+            country,
+            state,
+            city,
+            zip_code,
+            work_address,
+            number_of_employees,
+            company_name,
+            ...rest
+        } = data;
+
+        const transformedData = {
+            ...rest,
+            company_details: {
+                country,
+                state,
+                city,
+                zip_code,
+                work_address,
+                company_name,
+                number_of_employees,
+            },
+        };
+
         try {
-            const res = await signup(data).unwrap();
-
-            // Optionally store token & user
-            dispatch(setCredentials(res)); // only if API returns token/user
-
-            console.log("Signup success:", res);
+            const res = await signup(transformedData).unwrap();
+            // console.log("Signup success:", res);
+            dispatch(setCredentials(res?.data));
+            reset();
             navigate(-1);
         } catch (err) {
             console.error("Signup failed:", err?.data?.message || err);
@@ -46,8 +69,8 @@ export default function SignUp() {
     ];
 
     const password = watch("password");
-    const fieldValues = watch();
-    console.log("form fieldValues", fieldValues);
+    // const fieldValues = watch();
+    // console.log("form fieldValues", fieldValues);
 
     return (
         <div className="max-w-6xl mx-auto p-6 space-y-8">
