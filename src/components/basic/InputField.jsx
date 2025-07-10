@@ -14,7 +14,7 @@ export default function InputField({
     name,
 }) {
     return (
-        <div className={`w-72 space-y-1 ${className}`}>
+        <div className={`w-full space-y-1 ${className}`}>
             <Typography
                 as="label"
                 htmlFor={name || label}
@@ -30,7 +30,7 @@ export default function InputField({
                 id={name || label}
                 type={type}
                 placeholder={placeholder}
-                className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                className="px-4 py-3 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none focus:border-blue-600"
                 maxLength={maxLength}
                 value={value}
                 onChange={onChange}

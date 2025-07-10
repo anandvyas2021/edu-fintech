@@ -67,7 +67,7 @@ export default function NavbarContent() {
 
     const { user, isLoggedIn } = useSelector((state) => state.auth);
 
-    console.log("auth", user, isLoggedIn);
+    // console.log("auth", user, isLoggedIn);
     const [logoutServer, { isLoading: apiLoading }] = useLogoutMutation();
 
     const Dropdown = ({ items, parentRoute }) => (
@@ -96,7 +96,7 @@ export default function NavbarContent() {
 
     const logoutHandler = async () => {
         try {
-            await logoutServer(); // optional — skip if not needed
+            await logoutServer();
         } catch (err) {
             console.error("Server logout failed", err);
         } finally {

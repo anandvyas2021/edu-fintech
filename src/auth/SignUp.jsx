@@ -57,7 +57,6 @@ export default function SignUp() {
             navigate(-1);
         } catch (err) {
             console.error("Signup failed:", err?.data?.message || err);
-            // Optionally show error message
         }
     };
 
