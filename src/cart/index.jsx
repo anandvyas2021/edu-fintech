@@ -28,7 +28,7 @@ export default function Cart({}) {
         });
     };
 
-    console.log("cart", updateLoading, cart_details);
+    console.log("cart", cart_details);
 
     const handleQuantityChange = async (_id, quantity, type) => {
         let finalQuantity = type === "dec" ? quantity - 1 : quantity + 1;
@@ -44,19 +44,23 @@ export default function Cart({}) {
         });
     };
 
-    if (isLoading) return <p>Loading cart...</p>;
     if (error) return <p>Error loading cart</p>;
 
     return (
         <div className="min-h-screen py-10 px-4">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6">
-                {!Object.keys(cart_details)?.length ? (
+                {!isLoading && !Object.keys(cart_details)?.length ? (
                     <div className="w-full flex flex-col items-center justify-center">
                         <img src={emptyCart} className="w-96 " />
                         <h3 className="text-3xl font-semibold text-red-500">
                             Cart is empty!!
                         </h3>
                     </div>
+                ) : isLoading ? (
+                    <>
+                        <div className="lg:w-[70%] w-full h-[450px] rounded-lg animate-pulse bg-gray-300" />
+                        <div className="lg:w-[30%] w-full h-[450px] rounded-lg animate-pulse bg-gray-300" />
+                    </>
                 ) : (
                     <>
                         <div className="lg:w-[70%] w-full bg-white p-6 rounded-lg shadow-md">

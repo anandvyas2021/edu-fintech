@@ -23,7 +23,7 @@ export const cartApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ["Cart"],
         }),
         removeFromCart: builder.mutation({
-            query: (cart_id, webinar_id) => ({
+            query: ({ cart_id, webinar_id }) => ({
                 url: `/cart/remove`,
                 method: "POST",
                 body: { cart_id, webinar_id },
