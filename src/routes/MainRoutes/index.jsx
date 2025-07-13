@@ -10,6 +10,7 @@ import WebinarsPage from "./WebinarsPage";
 import WebinarDetails from "./WebinarsPage/WebinarDetails";
 
 import Cart from "../../cart";
+import PayPalCardCheckout from "../../cart/payment/PayPalCardCheckout";
 
 export default function MainRoutes(props) {
     const routes = useRoutes([
@@ -35,6 +36,7 @@ export default function MainRoutes(props) {
             ],
         },
         { path: "/cart", element: <Cart /> },
+        { path: "/checkout", element: <PayPalCardCheckout /> },
     ]);
     return <div className="">{routes}</div>;
 }

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import webinarDummy from "../assets/webinarDummy.jpg";
-import emptyCart from "../assets/empty-cart.png";
+import { useNavigate } from "react-router-dom";
 import { Trash2, Minus, Plus, Loader } from "lucide-react";
+
+import emptyCart from "../assets/empty-cart.png";
+import webinarDummy from "../assets/webinarDummy.jpg";
 
 import {
     useGetCartQuery,
@@ -13,18 +15,25 @@ import Button from "../components/basic/Button";
 
 export default function Cart({}) {
     const [updateBtn, setUpdateBtn] = useState(null);
+    const [removeBtn, setRemoveBtn] = useState(null);
     const { data: cartData, isLoading, error } = useGetCartQuery();
     const [updateCart, { isLoading: updateLoading }] = useUpdateCartMutation();
     const [removeFromCart, { isLoading: removeItemLoading }] =
         useRemoveFromCartMutation();
 
+    let navigate = useNavigate();
+
     let cart_details = cartData?.data?.cart_details;
 
-    const handleRemoveItem = async (_id) => {
+    const handleRemoveItem = async (_id, i) => {
         let cart_id = cart_details.cart_id;
+
+        setRemoveBtn(i);
         await removeFromCart({
             cart_id,
             webinar_id: _id,
+        }).finally(() => {
+            setRemoveBtn(null);
         });
     };
 
@@ -44,7 +53,7 @@ export default function Cart({}) {
         });
     };
 
-    if (error) return <p>Error loading cart</p>;
+    // if (error) return <p>Error loading cart</p>;
 
     return (
         <div className="min-h-screen py-10 px-4">
@@ -68,93 +77,99 @@ export default function Cart({}) {
                                 Your Cart
                             </h2>
                             <div className="space-y-6">
-                                {cart_details?.details?.items?.map((item) => (
-                                    <div
-                                        key={item?.webinar_id}
-                                        className="flex items-center gap-4 border-b pb-4"
-                                    >
-                                        <img
-                                            // src={item?.image}
-                                            src={webinarDummy}
-                                            alt={item?.slug}
-                                            className="w-20 h-20 object-cover rounded-md"
-                                        />
-                                        <div className="flex-1">
-                                            <h3 className="text-lg font-semibold text-gray-800">
-                                                {item?.title}
-                                            </h3>
-                                            <p className="text-sm text-gray-500">
-                                                ₹{item?.base_price}
-                                            </p>
-
-                                            {/* Quantity Control */}
-                                            <div className="flex items-center mt-2 gap-2">
-                                                <button
-                                                    className="bg-gray-200 p-1 rounded hover:bg-gray-300"
-                                                    disabled={updateLoading}
-                                                    onClick={() =>
-                                                        handleQuantityChange(
-                                                            item?.webinar_id,
-                                                            item?.quantity,
-                                                            "dec"
-                                                        )
-                                                    }
-                                                >
-                                                    {updateBtn === "dec" &&
-                                                    updateLoading ? (
-                                                        <Loader
-                                                            size={14}
-                                                            className="animate-spin"
-                                                        />
-                                                    ) : (
-                                                        <Minus size={14} />
-                                                    )}
-                                                </button>
-                                                <span className="px-2 font-medium text-sm">
-                                                    {item?.quantity}
-                                                </span>
-                                                <button
-                                                    className="bg-gray-200 p-1 rounded hover:bg-gray-300"
-                                                    disabled={updateLoading}
-                                                    onClick={() =>
-                                                        handleQuantityChange(
-                                                            item?.webinar_id,
-                                                            item?.quantity,
-                                                            "inc"
-                                                        )
-                                                    }
-                                                >
-                                                    {updateBtn === "inc" &&
-                                                    updateLoading ? (
-                                                        <Loader
-                                                            size={14}
-                                                            className="animate-spin"
-                                                        />
-                                                    ) : (
-                                                        <Plus size={14} />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <button
-                                            className="text-red-500 hover:text-red-700"
-                                            onClick={() =>
-                                                handleRemoveItem(
-                                                    item?.webinar_id
-                                                )
-                                            }
+                                {cart_details?.details?.items?.map(
+                                    (item, i) => (
+                                        <div
+                                            key={item?.webinar_id}
+                                            className="flex items-center gap-4 border-b pb-4"
                                         >
-                                            {removeItemLoading ? (
-                                                <Loader
-                                                    size={20}
-                                                    className="animate-spin"
-                                                />
-                                            ) : (
-                                                <Trash2 size={20} />
-                                            )}
-                                        </button>
-                                    </div>
-                                ))}
+                                            <img
+                                                // src={item?.image}
+                                                src={webinarDummy}
+                                                alt={item?.slug}
+                                                className="w-20 h-20 object-cover rounded-md"
+                                            />
+                                            <div className="flex-1">
+                                                <h3 className="text-lg font-semibold text-gray-800">
+                                                    {item?.title}
+                                                </h3>
+                                                <p className="text-sm text-gray-500">
+                                                    ₹{item?.base_price}
+                                                </p>
+
+                                                {/* Quantity Control */}
+                                                <div className="flex items-center mt-2 gap-2">
+                                                    <button
+                                                        className="bg-gray-200 p-1 rounded hover:bg-gray-300"
+                                                        disabled={updateLoading}
+                                                        onClick={() =>
+                                                            handleQuantityChange(
+                                                                item?.webinar_id,
+                                                                item?.quantity,
+                                                                "dec"
+                                                            )
+                                                        }
+                                                    >
+                                                        {updateBtn === "dec" &&
+                                                        updateLoading ? (
+                                                            <Loader
+                                                                size={14}
+                                                                className="animate-spin"
+                                                            />
+                                                        ) : (
+                                                            <Minus size={14} />
+                                                        )}
+                                                    </button>
+                                                    <span className="px-2 font-medium text-sm">
+                                                        {item?.type === "live"
+                                                            ? item?.attendees
+                                                            : item?.quantity}
+                                                    </span>
+                                                    <button
+                                                        className="bg-gray-200 p-1 rounded hover:bg-gray-300"
+                                                        disabled={updateLoading}
+                                                        onClick={() =>
+                                                            handleQuantityChange(
+                                                                item?.webinar_id,
+                                                                item?.quantity,
+                                                                "inc"
+                                                            )
+                                                        }
+                                                    >
+                                                        {updateBtn === "inc" &&
+                                                        updateLoading ? (
+                                                            <Loader
+                                                                size={14}
+                                                                className="animate-spin"
+                                                            />
+                                                        ) : (
+                                                            <Plus size={14} />
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button
+                                                className="text-red-500 hover:text-red-700"
+                                                onClick={() =>
+                                                    handleRemoveItem(
+                                                        item?.webinar_id,
+                                                        i
+                                                    )
+                                                }
+                                            >
+                                                {removeItemLoading &&
+                                                removeBtn === i ? (
+                                                    <Loader
+                                                        size={20}
+                                                        className="animate-spin"
+                                                    />
+                                                ) : (
+                                                    <Trash2 size={20} />
+                                                )}
+                                            </button>
+                                        </div>
+                                    )
+                                )}
                             </div>
                         </div>
 
@@ -182,6 +197,7 @@ export default function Cart({}) {
                             <Button
                                 className="mt-6 w-full"
                                 label={"Proceed to Checkout"}
+                                onClick={() => navigate("/checkout")}
                             />
                         </div>
                     </>
