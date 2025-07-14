@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Loader, CirclePlus, CircleCheck } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import Overview from "./detailsTabs/Overview";
@@ -7,10 +8,15 @@ import Credits from "./detailsTabs/Credits";
 import Faculty from "./detailsTabs/Faculty";
 import AccessPass from "./detailsTabs/AccessPass";
 
-import Button from "../../../components/basic/Button";
-import Modal from "../../../components/basic/Modal";
-import PurchaseOptions from "../../../components/layouts/PurchaseOptions";
 import { useGetWebinarBySlugQuery } from "../../../app/features/webinars/webinarApiSlice";
+import {
+    useAddToWishlistMutation,
+    useRemoveFromWishlistMutation,
+} from "../../../app/features/wishlist/wishlistApiSlice";
+
+import Modal from "../../../components/basic/Modal";
+import Button from "../../../components/basic/Button";
+import PurchaseOptions from "../../../components/layouts/PurchaseOptions";
 
 export default function WebinarDetails() {
     const [activeTab, setActiveTab] = useState("Overview");
@@ -20,12 +26,29 @@ export default function WebinarDetails() {
     const [params] = useSearchParams();
     let currentWebinarSlug = params?.get("name");
 
-    const { data, isLoading } = useGetWebinarBySlugQuery(currentWebinarSlug);
+    const { data, isLoading, refetch } =
+        useGetWebinarBySlugQuery(currentWebinarSlug);
+    const [addToWishlist, { isLoading: addWishLoading }] =
+        useAddToWishlistMutation();
+    const [removeFromWishlist, { isLoading: removeWishLoading }] =
+        useRemoveFromWishlistMutation();
+
     let webinar = data?.data;
 
     const handlePurchaseClose = () => {
         setIsPurchaseModal(false);
     };
+
+    const handleWishlist = async (id, action) => {
+        console.log(id, webinar);
+        if (action === "add") {
+            await addToWishlist(id).unwrap();
+        } else {
+            await removeFromWishlist(id).unwrap();
+        }
+        return await refetch();
+    };
+    console.log("w", webinar);
 
     if (!isLoading && !webinar) {
         return (
@@ -44,9 +67,13 @@ export default function WebinarDetails() {
                 </button>
 
                 <div className="flex flex-col md:flex-row gap-6">
-                    {isLoading || true ? (
+                    {isLoading ? (
                         <>
-                            <div></div>
+                            <div className="flex flex-col gap-4 w-full animate-pulse">
+                                <div className="h-80 rounded-lg bg-gray-300"></div>
+                                <div className="h-96 rounded-lg bg-gray-300"></div>
+                            </div>
+                            <div className="w-full md:w-80 rounded-lg bg-gray-300 animate-pulse"></div>
                         </>
                     ) : (
                         <>
@@ -143,9 +170,48 @@ export default function WebinarDetails() {
                                         }
                                     />
 
-                                    <button className="text-blue-600 text-sm hover:underline">
-                                        + Add to Wishlist
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            className={`flex items-center gap-2 text-sm font-semibold  ${
+                                                webinar?.inWishlist
+                                                    ? "text-green-600"
+                                                    : "text-blue-600"
+                                            }`}
+                                            onClick={() =>
+                                                handleWishlist(
+                                                    webinar?._id,
+                                                    "add"
+                                                )
+                                            }
+                                            disabled={webinar?.inWishlist}
+                                        >
+                                            {addWishLoading ||
+                                            removeWishLoading ||
+                                            isLoading ? (
+                                                <Loader className="animate-spin" />
+                                            ) : webinar?.inWishlist ? (
+                                                <CircleCheck />
+                                            ) : (
+                                                <CirclePlus />
+                                            )}
+                                            {webinar?.inWishlist
+                                                ? "Added"
+                                                : "Add"}
+                                        </button>
+                                        {webinar?.inWishlist ? (
+                                            <p
+                                                className="text-xs font-semibold hover:underline cursor-pointer text-red-600"
+                                                onClick={() =>
+                                                    handleWishlist(
+                                                        webinar?._id,
+                                                        "remove"
+                                                    )
+                                                }
+                                            >
+                                                Remove
+                                            </p>
+                                        ) : null}
+                                    </div>
                                 </div>
 
                                 <div className="border p-4 rounded-lg">
@@ -164,40 +230,42 @@ export default function WebinarDetails() {
                                     </div>
                                 </div>
 
-                                <div className="border p-4 rounded-lg">
-                                    <h4 className="font-medium mb-2">
-                                        Related Training
-                                    </h4>
-                                    <div className="space-y-3">
-                                        {webinar?.relatedTrainings?.map(
-                                            (rt) => (
-                                                <div
-                                                    key={rt?._id}
-                                                    className="border p-2 rounded hover:bg-gray-50 cursor-pointer"
-                                                >
-                                                    <div className="text-xs text-gray-500">
-                                                        {rt?.type}
-                                                        {rt?.date &&
-                                                            ` - ${rt?.date}`}
-                                                    </div>
-                                                    <div className="font-medium text-sm">
-                                                        {rt?.title}
-                                                    </div>
-                                                    <button
-                                                        onClick={() =>
-                                                            navigate(
-                                                                `/webinars/${rt._id}`
-                                                            )
-                                                        }
-                                                        className="text-blue-600 text-xs mt-1 hover:underline"
+                                {webinar?.relatedTrainings?.length ? (
+                                    <div className="border p-4 rounded-lg">
+                                        <h4 className="font-medium mb-2">
+                                            Related Training
+                                        </h4>
+                                        <div className="space-y-3">
+                                            {webinar?.relatedTrainings?.map(
+                                                (rt) => (
+                                                    <div
+                                                        key={rt?._id}
+                                                        className="border p-2 rounded hover:bg-gray-50 cursor-pointer"
                                                     >
-                                                        Learn More
-                                                    </button>
-                                                </div>
-                                            )
-                                        )}
+                                                        <div className="text-xs text-gray-500">
+                                                            {rt?.type}
+                                                            {rt?.date &&
+                                                                ` - ${rt?.date}`}
+                                                        </div>
+                                                        <div className="font-medium text-sm">
+                                                            {rt?.title}
+                                                        </div>
+                                                        <button
+                                                            onClick={() =>
+                                                                navigate(
+                                                                    `/webinars/${rt._id}`
+                                                                )
+                                                            }
+                                                            className="text-blue-600 text-xs mt-1 hover:underline"
+                                                        >
+                                                            Learn More
+                                                        </button>
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
+                                ) : null}
 
                                 <div className="mt-8 text-gray-700 max-w-3xl">
                                     <h3 className="font-semibold text-lg mb-2">
