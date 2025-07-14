@@ -18,11 +18,11 @@ export const webinarApiSlice = apiSlice.injectEndpoints({
                     : [{ type: "Webinar", id: "LIST" }],
         }),
         getWebinarById: builder.query({
-            query: (id) => `/webinars/${id}`,
+            query: (id) => `/webinars?id=${id}`,
             providesTags: (result, error, id) => [{ type: "Webinar", id }],
         }),
         getWebinarBySlug: builder.query({
-            query: (slug) => `/webinars/slug/${slug}`,
+            query: (slug) => `/webinars?slug=${slug}`,
             providesTags: (result, error, slug) => [
                 { type: "Webinar", id: slug },
             ],

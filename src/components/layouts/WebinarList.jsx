@@ -15,17 +15,16 @@ export default function WebinarList({
     // const [filteredWebinars, setFilteredWebinars] = useState([]);
     // const [webinars, setWebinars] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    let [params, setParams] = useSearchParams();
-
-    let page = +(params?.get("page") ?? 1);
-
     const navigate = useNavigate();
+    let [params, setParams] = useSearchParams();
+    let page = +(params?.get("page") ?? 1);
 
     const { data: webinars, isLoading } = useGetAllWebinarsQuery({
         page,
         limit: 10,
     });
-    console.log("page", page, webinars);
+    let webinarData = webinars?.data;
+    // console.log("page", page, webinarData);
 
     // useEffect(() => {
     //     const { data, isLoading } = useGetAllWebinarsQuery();
@@ -33,36 +32,39 @@ export default function WebinarList({
     // }, [page]);
 
     useEffect(() => {
-        let results = webinars?.data;
+        let results = webinarData?.data;
+        console.log("res", results);
 
-        if (filters.topics.length) {
-            results = results.filter((w) =>
-                w.topics.some((t) => filters.topics.includes(t))
+        if (filters?.topics?.length) {
+            results = results?.filter((w) =>
+                w?.topics?.some((t) => filters?.topics?.includes(t))
             );
         }
 
-        if (filters.credits.length) {
-            results = results.filter((w) =>
-                w.credits.some((c) => filters.credits.includes(c))
+        if (filters?.credits?.length) {
+            results = results?.filter((w) =>
+                w?.credits?.some((c) => filters?.credits?.includes(c))
             );
         }
 
-        if (filters.states?.length) {
-            results = results.filter((w) => filters.states.includes(w.state));
+        if (filters?.states?.length) {
+            results = results?.filter((w) =>
+                filters?.states?.includes(w?.state)
+            );
         }
 
         if (sort === "eventDate") {
-            results.sort((a, b) => a.date.localeCompare(b.date));
+            results?.sort((a, b) => a?.date?.localeCompare(b?.date));
         } else if (sort === "alphabetical") {
-            results.sort((a, b) => a.title.localeCompare(b.title));
+            results?.sort((a, b) => a?.title?.localeCompare(b?.title));
         }
         if (category === "live") {
-            results = results.filter((w) =>
-                w.type.toLowerCase().includes("live")
+            results = results?.filter((w) =>
+                w?.type?.toLowerCase()?.includes("live")
             );
-        } else if (category === "ondemand") {
-            results = results.filter((w) =>
-                w.type.toLowerCase().includes("ondemand")
+        } else if (category === "on-demand") {
+            results = results?.filter((w) =>
+                w?.type?.toLowerCase()?.includes("on-demand")
             );
         }
 
@@ -90,7 +92,7 @@ export default function WebinarList({
                         : "grid-cols-1"
                 } gap-6`}
             >
-                {webinars?.data?.data?.map((item) => (
+                {webinarData?.data?.map((item) => (
                     <div
                         key={item?._id}
                         className="group bg-white border rounded-xl shadow hover:shadow-lg transition overflow-hidden relative flex flex-col cursor-pointer"
@@ -178,13 +180,13 @@ export default function WebinarList({
             <div className="flex justify-between items-center mt-6 text-sm">
                 <span>
                     Showing{" "}
-                    {webinars?.data?.pagination?.current_page > 1
-                        ? webinars?.data?.pagination?.current_page * 10 + 1
+                    {webinarData?.pagination?.current_page > 1
+                        ? webinarData?.pagination?.current_page * 10 + 1
                         : 1}{" "}
                     -{" "}
-                    {webinars?.data?.data?.length +
-                        webinars?.data?.pagination?.current_page * 10}{" "}
-                    of {webinars?.data?.pagination?.total_count} results
+                    {webinarData?.data?.length +
+                        webinarData?.pagination?.current_page * 10}{" "}
+                    of {webinarData?.pagination?.total_count} results
                 </span>
 
                 <div className="flex gap-2">
@@ -197,15 +199,15 @@ export default function WebinarList({
                         Prev
                     </button>
                     <span>
-                        {webinars?.data?.pagination?.current_page} /{" "}
-                        {webinars?.data?.pagination?.total_pages || 1}
+                        {webinarData?.pagination?.current_page} /{" "}
+                        {webinarData?.pagination?.total_pages || 1}
                     </span>
                     <button
                         className="px-2 py-1 border rounded disabled:opacity-50"
                         // disabled={
                         //     currentPage ===
-                        //         webinars?.data?.pagination?.total_pages ||
-                        //     webinars?.data?.pagination?.total_pages === 0
+                        //         webinarData?.pagination?.total_pages ||
+                        //     webinarData?.pagination?.total_pages === 0
                         // }
                         // onClick={() => setCurrentPage((p) => p + 1)}
                         onClick={() => handlePage("next")}

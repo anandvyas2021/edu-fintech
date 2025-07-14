@@ -5,7 +5,7 @@ import ProcessSection from "./ProcessSection";
 import WebinarGrid1 from "../../../components/layouts/WebinarGrid1";
 import HeroPanelLayout from "../../../components/layouts/HeroPanelLayout";
 
-import { learningPathsData, mockWebinars } from "../../../utils/dummy";
+import { learningPathsData } from "../../../utils/dummy";
 
 export default function CategoryDetails() {
     let [businessData, setBusinessData] = useState({});
@@ -21,9 +21,7 @@ export default function CategoryDetails() {
     }, [currentBusinessSlug]);
 
     useEffect(() => {
-        let data = mockWebinars?.filter(
-            (webinar) => webinar?.category_id == businessData?._id
-        );
+        let data = [];
         setWebinarsData(data);
     }, [businessData]);
 
