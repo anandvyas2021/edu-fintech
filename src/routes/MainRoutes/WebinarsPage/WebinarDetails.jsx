@@ -40,7 +40,6 @@ export default function WebinarDetails() {
     };
 
     const handleWishlist = async (id, action) => {
-        console.log(id, webinar);
         if (action === "add") {
             await addToWishlist(id).unwrap();
         } else {
@@ -48,7 +47,6 @@ export default function WebinarDetails() {
         }
         return await refetch();
     };
-    console.log("w", webinar);
 
     if (!isLoading && !webinar) {
         return (
@@ -194,9 +192,11 @@ export default function WebinarDetails() {
                                             ) : (
                                                 <CirclePlus />
                                             )}
-                                            {webinar?.inWishlist
-                                                ? "Added"
-                                                : "Add"}
+                                            {`${
+                                                webinar?.inWishlist
+                                                    ? "Added"
+                                                    : "Add"
+                                            } to Wishlist`}
                                         </button>
                                         {webinar?.inWishlist ? (
                                             <p
