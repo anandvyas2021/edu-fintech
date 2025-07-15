@@ -7,10 +7,10 @@ export const cartApiSlice = apiSlice.injectEndpoints({
             providesTags: ["Cart"],
         }),
         addToCart: builder.mutation({
-            query: (webinar_id) => ({
+            query: (data) => ({
                 url: "/cart/add",
                 method: "POST",
-                body: { webinar_id },
+                body: data,
             }),
             invalidatesTags: ["Cart"],
         }),

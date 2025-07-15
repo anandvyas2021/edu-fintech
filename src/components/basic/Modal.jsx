@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     Dialog,
     DialogBackdrop,
@@ -23,8 +22,8 @@ export default function Modal({ open, handleClose, title, children, footer }) {
                             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
                         >
                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                <div className="sm:flex sm:items-start">
-                                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <div className="w-full sm:flex sm:items-start">
+                                    <div className="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                         <DialogTitle
                                             as="h3"
                                             className="flex items-center justify-between text-base font-semibold text-gray-900"
@@ -38,7 +37,9 @@ export default function Modal({ open, handleClose, title, children, footer }) {
                                                 />
                                             </div>
                                         </DialogTitle>
-                                        <div className="mt-2">{children}</div>
+                                        <div className="w-full mt-2">
+                                            {children}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

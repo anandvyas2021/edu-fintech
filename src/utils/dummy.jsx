@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 
 import heroBg from "../assets/heroBg.jpg";
-import { addToCartHandler } from "./api/helpers";
 
 export const trustedBrands = [
     {
@@ -217,7 +216,7 @@ export const subscriptionPlans = [
         price: "$699 / year",
         desc: "Comprehensive professional business training through the year for individuals.",
         cta: "Buy Now",
-        handler: () => addToCartHandler(),
+        handler: () => {},
         features: [
             "Unlimited Course Subscription",
             "Unlimited Learning Paths",

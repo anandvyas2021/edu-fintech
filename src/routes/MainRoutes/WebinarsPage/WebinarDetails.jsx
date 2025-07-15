@@ -8,7 +8,10 @@ import Credits from "./detailsTabs/Credits";
 import Faculty from "./detailsTabs/Faculty";
 import AccessPass from "./detailsTabs/AccessPass";
 
-import { useGetWebinarBySlugQuery } from "../../../app/features/webinars/webinarApiSlice";
+import {
+    useGetWebinarByIdQuery,
+    useGetWebinarBySlugQuery,
+} from "../../../app/features/webinars/webinarApiSlice";
 import {
     useAddToWishlistMutation,
     useRemoveFromWishlistMutation,
@@ -24,10 +27,13 @@ export default function WebinarDetails() {
 
     const navigate = useNavigate();
     const [params] = useSearchParams();
-    let currentWebinarSlug = params?.get("name");
+    let currentWebinarSlug = params?.get("name"),
+        currentWebinarId = params?.get("_id");
 
-    const { data, isLoading, refetch } =
-        useGetWebinarBySlugQuery(currentWebinarSlug);
+    const { data, isLoading, refetch } = currentWebinarSlug
+        ? useGetWebinarBySlugQuery(currentWebinarSlug)
+        : useGetWebinarByIdQuery(currentWebinarId);
+
     const [addToWishlist, { isLoading: addWishLoading }] =
         useAddToWishlistMutation();
     const [removeFromWishlist, { isLoading: removeWishLoading }] =
@@ -53,6 +59,8 @@ export default function WebinarDetails() {
             <div className="text-center mt-20 text-lg">Webinar not found.</div>
         );
     }
+
+    console.log("w", isLoading, webinar);
 
     return (
         <>
@@ -241,6 +249,14 @@ export default function WebinarDetails() {
                                                     <div
                                                         key={rt?._id}
                                                         className="border p-2 rounded hover:bg-gray-50 cursor-pointer"
+                                                        onClick={async () => {
+                                                            navigate(
+                                                                rt?.slug
+                                                                    ? `/training/details?name=${rt?.slug}`
+                                                                    : `/training/details?_id=${rt?._id}`
+                                                            );
+                                                            await refetch();
+                                                        }}
                                                     >
                                                         <div className="text-xs text-gray-500">
                                                             {rt?.type}
@@ -251,12 +267,12 @@ export default function WebinarDetails() {
                                                             {rt?.title}
                                                         </div>
                                                         <button
-                                                            onClick={() =>
-                                                                navigate(
-                                                                    `/webinars/${rt._id}`
-                                                                )
-                                                            }
-                                                            className="text-blue-600 text-xs mt-1 hover:underline"
+                                                            // onClick={() =>
+                                                            //     navigate(
+                                                            //         `/webinars/${rt._id}`
+                                                            //     )
+                                                            // }
+                                                            className="text-xs mt-1 hover:underline text-blue-600"
                                                         >
                                                             Learn More
                                                         </button>
@@ -289,7 +305,7 @@ export default function WebinarDetails() {
                 open={isPurchaseModal}
                 handleClose={handlePurchaseClose}
             >
-                <PurchaseOptions />
+                <PurchaseOptions webinar={webinar} />
             </Modal>
         </>
     );

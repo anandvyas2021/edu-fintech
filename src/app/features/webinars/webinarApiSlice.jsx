@@ -52,6 +52,13 @@ export const webinarApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Webinar"],
         }),
+        getWebinarPricing: builder?.mutation({
+            query: (data) => ({
+                url: "/webinars/calculate-pricing",
+                method: "POST",
+                body: data,
+            }),
+        }),
     }),
 });
 
@@ -62,4 +69,5 @@ export const {
     useAddWebinarMutation,
     useUpdateWebinarMutation,
     useDeleteWebinarMutation,
+    useGetWebinarPricingMutation,
 } = webinarApiSlice;

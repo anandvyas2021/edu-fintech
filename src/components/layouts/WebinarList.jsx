@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import webinarDummy from "../../assets/webinarDummy.jpg";
 import { Heart, HeartOff, HeartIcon } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -13,23 +13,20 @@ export default function WebinarList({
     toggleFavourite,
 }) {
     // const [filteredWebinars, setFilteredWebinars] = useState([]);
-    // const [webinars, setWebinars] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
     let [params, setParams] = useSearchParams();
     let page = +(params?.get("page") ?? 1);
 
-    const { data: webinars, isLoading } = useGetAllWebinarsQuery({
+    const {
+        data: webinars,
+        isLoading,
+        refetch,
+    } = useGetAllWebinarsQuery({
         page,
         limit: 10,
     });
     let webinarData = webinars?.data;
     // console.log("page", page, webinarData);
-
-    // useEffect(() => {
-    //     const { data, isLoading } = useGetAllWebinarsQuery();
-    //     console.log(data);
-    // }, [page]);
 
     useEffect(() => {
         let results = webinarData?.data;
@@ -77,10 +74,6 @@ export default function WebinarList({
         setParams({
             page: key === "next" ? page + 1 : page > 1 ? page - 1 : page,
         });
-        // params.set(
-        //     "page",
-        //     key === "next" ? page + 1 : page > 1 ? page - 1 : page
-        // );
     };
 
     return (
@@ -92,38 +85,45 @@ export default function WebinarList({
                         : "grid-cols-1"
                 } gap-6`}
             >
-                {webinarData?.data?.map((item) => (
-                    <div
-                        key={item?._id}
-                        className="group bg-white border rounded-xl shadow hover:shadow-lg transition overflow-hidden relative flex flex-col cursor-pointer"
-                        onClick={() =>
-                            navigate(`/training/details?name=${item?.slug}`)
-                        }
-                    >
-                        <div className="relative">
-                            <img
-                                src={item?.image ?? webinarDummy}
-                                alt={item?.slug}
-                                className="w-full h-40 object-cover"
-                            />
-
-                            <div
-                                onClick={() => toggleFavourite(item?._id)}
-                                className="absolute top-2 right-2 bg-white rounded-full p-1 shadow cursor-pointer hover:text-red-600 z-50"
-                            >
-                                <HeartIcon
-                                    color={
-                                        favourites.includes(item?._id)
-                                            ? "red"
-                                            : "black"
-                                    }
-                                    fill={
-                                        favourites.includes(item._id)
-                                            ? "red"
-                                            : "transparent"
-                                    }
+                {isLoading ? (
+                    <>
+                        {new Array(6)?.fill("")?.map((item) => (
+                            <div className="h-60 rounded-xl bg-gray-300 animate-pulse" />
+                        ))}
+                    </>
+                ) : (
+                    webinarData?.data?.map((item) => (
+                        <div
+                            key={item?._id}
+                            className="group bg-white border rounded-xl shadow hover:shadow-lg transition overflow-hidden relative flex flex-col cursor-pointer"
+                            onClick={() =>
+                                navigate(`/training/details?name=${item?.slug}`)
+                            }
+                        >
+                            <div className="relative">
+                                <img
+                                    src={item?.image ?? webinarDummy}
+                                    alt={item?.slug}
+                                    className="w-full h-40 object-cover"
                                 />
-                                {/* {favourites.includes(w.id) ? (
+
+                                <div
+                                    onClick={() => toggleFavourite(item?._id)}
+                                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow cursor-pointer hover:text-red-600 z-50"
+                                >
+                                    <HeartIcon
+                                        color={
+                                            favourites.includes(item?._id)
+                                                ? "red"
+                                                : "black"
+                                        }
+                                        fill={
+                                            favourites.includes(item._id)
+                                                ? "red"
+                                                : "transparent"
+                                        }
+                                    />
+                                    {/* {favourites.includes(w.id) ? (
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="red"
@@ -154,26 +154,27 @@ export default function WebinarList({
                                         />
                                     </svg>
                                 )} */}
+                                </div>
+
+                                <div className="absolute bottom-2 left-2 text-xs bg-black/70 text-white px-2 py-1 rounded">
+                                    {item?.type}
+                                </div>
+                                <div className="absolute bottom-2 right-2 text-xs bg-white/90 text-gray-800 px-2 py-1 rounded">
+                                    {item?.date}
+                                </div>
                             </div>
 
-                            <div className="absolute bottom-2 left-2 text-xs bg-black/70 text-white px-2 py-1 rounded">
-                                {item?.type}
-                            </div>
-                            <div className="absolute bottom-2 right-2 text-xs bg-white/90 text-gray-800 px-2 py-1 rounded">
-                                {item?.date}
+                            <div className="p-4 space-y-2 flex flex-col flex-1 justify-between">
+                                <h3 className="font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2">
+                                    {item?.title}
+                                </h3>
+                                <p className="text-xs text-gray-500">
+                                    Credits: {item?.credit?.join(", ")}
+                                </p>
                             </div>
                         </div>
-
-                        <div className="p-4 space-y-2 flex flex-col flex-1 justify-between">
-                            <h3 className="font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2">
-                                {item?.title}
-                            </h3>
-                            <p className="text-xs text-gray-500">
-                                Credits: {item?.credit?.join(", ")}
-                            </p>
-                        </div>
-                    </div>
-                ))}
+                    ))
+                )}
             </div>
 
             {/* Pagination */}
@@ -192,7 +193,7 @@ export default function WebinarList({
                 <div className="flex gap-2">
                     <button
                         className="px-2 py-1 border rounded disabled:opacity-50"
-                        disabled={currentPage === 1}
+                        disabled={page === 1}
                         // onClick={() => setCurrentPage((p) => p - 1)}
                         onClick={() => handlePage("prev")}
                     >
@@ -205,7 +206,7 @@ export default function WebinarList({
                     <button
                         className="px-2 py-1 border rounded disabled:opacity-50"
                         // disabled={
-                        //     currentPage ===
+                        //     page ===
                         //         webinarData?.pagination?.total_pages ||
                         //     webinarData?.pagination?.total_pages === 0
                         // }
