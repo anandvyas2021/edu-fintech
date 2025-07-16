@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+
+import { useGetEducatorBySlugQuery } from "../../../app/features/educators/educatorApiSlice";
+
+import BackNavigate from "../../../components/basic/BackNavigate";
 
 const specialties = [
     { label: "Legal & Law Practices", color: "bg-green-500", icon: "scale" },
@@ -13,34 +16,34 @@ const specialties = [
 ];
 
 export default function EducatorDetails() {
-    const [educatorDetails, setEducatorDetails] = useState(null);
     let [params] = useSearchParams();
-    let educator = params?.get("name");
-    console.log("educator", educator);
+    let educatorSlug = params?.get("name");
 
-    useEffect(() => {
-        //     let data = educators.filter(item=>item?.name)
-        //   setEducatorDetails()
-    }, [educator]);
+    const { data, isLoading } = useGetEducatorBySlugQuery(educatorSlug);
+    let educatorDetails = data?.data;
 
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md">
             {/* Profile */}
+            <BackNavigate />
             <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
                 <img
-                    src="https://via.placeholder.com/200x200"
-                    alt="Educator"
+                    src={educatorDetails?.image}
+                    alt={educatorDetails?.slug}
                     className="rounded-full w-48 h-48 object-cover shadow"
                 />
                 <div>
                     <h2 className="text-3xl font-bold text-gray-800">
-                        John Doe
+                        {educatorDetails?.name}
                     </h2>
-                    <p className="text-gray-600 text-lg mt-1">
-                        Senior Legal Consultant
+                    <p className="text-sm mt-1 text-gray-600">
+                        {educatorDetails?.qualifications}
+                    </p>
+                    <p className="text-sm mt-1 text-gray-600">
+                        {educatorDetails?.company}
                     </p>
 
-                    <div className="flex items-center text-gray-500 mt-4 space-x-4">
+                    <div className="flex items-center text-gray-500 mt-4 space-x-10">
                         <div className="flex items-center gap-1">
                             <Mail size={16} />
                             <span>johndoe@example.com</span>
@@ -58,7 +61,7 @@ export default function EducatorDetails() {
             </div>
 
             {/* Specialties */}
-            <div>
+            <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">
                     Specialties
                 </h3>
@@ -72,6 +75,16 @@ export default function EducatorDetails() {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            <div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                    About
+                </h3>
+                <div
+                    className="px-4"
+                    dangerouslySetInnerHTML={{ __html: educatorDetails?.about }}
+                />
             </div>
         </div>
     );

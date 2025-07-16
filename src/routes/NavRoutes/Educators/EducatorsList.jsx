@@ -3,9 +3,11 @@ import { Search } from "lucide-react";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
+import { useGetAllEducatorsQuery } from "../../../app/features/educators/educatorApiSlice";
+
 import { debounce } from "../../../utils/helpers";
 import InputField from "../../../components/basic/InputField";
-import { useGetAllEducatorsQuery } from "../../../app/features/educators/educatorApiSlice";
+import BackNavigate from "../../../components/basic/BackNavigate";
 
 const specialtiesList = [
     { label: "Human Resources", value: "human-resources" },
@@ -32,8 +34,8 @@ export default function EducatorsList() {
     });
 
     let navigate = useNavigate();
-    const { data, error, isLoading } = useGetAllEducatorsQuery();
-    console.log("data", data, isLoading);
+    const { data, isLoading } = useGetAllEducatorsQuery();
+    // console.log("data", data);
 
     // Debounced Search Function
     const debouncedSearch = debounce((term) => {
@@ -66,7 +68,7 @@ export default function EducatorsList() {
 
     const fetchEducators = (term, specialties, sort) => {
         // Replace with your actual API logic
-        console.log("Fetching with:", { term, specialties, sort });
+        // console.log("Fetching with:", { term, specialties, sort });
 
         // Dummy Data
         setEducators(educators);
@@ -74,6 +76,7 @@ export default function EducatorsList() {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
+            <BackNavigate />
             <h1 className="text-3xl font-bold mb-6 text-gray-800">
                 Connect with a{" "}
                 <span className="text-blue-600">Professional</span>
@@ -168,33 +171,41 @@ export default function EducatorsList() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                        {data?.data?.map((edu) => (
-                            <div
-                                key={edu?._id}
-                                className="group bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition cursor-pointer"
-                                onClick={() =>
-                                    navigate(
-                                        `/professionals/details?name=${edu?.slug}`
-                                    )
-                                }
-                            >
-                                <figure className="overflow-hidden">
-                                    <img
-                                        src={edu?.image}
-                                        alt={edu?.name}
-                                        className="group-hover:scale-110 transition-all duration-150 w-full h-48 object-cover"
-                                    />
-                                </figure>
-                                <div className="p-2">
-                                    <h3 className="font-semibold text-gray-800">
-                                        {edu?.name}
-                                    </h3>
-                                    <p className="text-sm text-gray-600 mt-1">
-                                        {edu?.title}
-                                    </p>
+                        {isLoading ? (
+                            <>
+                                {new Array(8)?.fill("_")?.map((v) => (
+                                    <div className="h-60 rounded-lg bg-gray-300 animate-pulse" />
+                                ))}
+                            </>
+                        ) : (
+                            data?.data?.map((edu) => (
+                                <div
+                                    key={edu?._id}
+                                    className="group bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition cursor-pointer"
+                                    onClick={() =>
+                                        navigate(
+                                            `/professionals/details?name=${edu?.slug}`
+                                        )
+                                    }
+                                >
+                                    <figure className="overflow-hidden">
+                                        <img
+                                            src={edu?.image}
+                                            alt={edu?.name}
+                                            className="group-hover:scale-110 transition-all duration-150 w-full h-48 object-cover"
+                                        />
+                                    </figure>
+                                    <div className="p-2">
+                                        <h3 className="font-semibold text-gray-800">
+                                            {edu?.name}
+                                        </h3>
+                                        <p className="text-xs font-semibold text-gray-500 mt-1">
+                                            {edu?.qualifications}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

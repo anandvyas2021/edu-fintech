@@ -7,11 +7,11 @@ export const educatorApiSlice = apiSlice.injectEndpoints({
             providesTags: ["Educator"],
         }),
         getEducatorById: builder.query({
-            query: (id) => `/educators/${id}`,
+            query: (id) => `/educators?id=${id}`,
             providesTags: (result, error, id) => [{ type: "Educator", id }],
         }),
         getEducatorBySlug: builder.query({
-            query: (slug) => `/educators/slug/${slug}`,
+            query: (slug) => `/educators?slug=${slug}`,
             providesTags: (result, error, slug) => [
                 { type: "Educator", id: slug },
             ],

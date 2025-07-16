@@ -26,6 +26,7 @@ import {
 import Modal from "../../../components/basic/Modal";
 import Button from "../../../components/basic/Button";
 import PurchaseOptions from "../../../components/layouts/PurchaseOptions";
+import BackNavigate from "../../../components/basic/BackNavigate";
 
 export default function WebinarDetails() {
     const [activeTab, setActiveTab] = useState("Overview");
@@ -66,20 +67,12 @@ export default function WebinarDetails() {
         );
     }
 
-    // console.log("w", isLoading, webinar);
-
     let isLive = webinar?.type === "live";
-    console.log("isLive", isLive);
 
     return (
         <>
             <div className="max-w-7xl mx-auto p-6 space-y-8">
-                <button
-                    onClick={() => navigate(-1)}
-                    className="text-blue-600 hover:underline text-sm"
-                >
-                    ← Back
-                </button>
+                <BackNavigate />
 
                 <div className="flex flex-col md:flex-row gap-6">
                     {isLoading ? (
