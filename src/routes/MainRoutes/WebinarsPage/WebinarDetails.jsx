@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Loader, CirclePlus, CircleCheck } from "lucide-react";
+import {
+    Loader,
+    CirclePlus,
+    CircleCheck,
+    CalendarRange,
+    Clock,
+} from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import Overview from "./detailsTabs/Overview";
@@ -60,7 +66,10 @@ export default function WebinarDetails() {
         );
     }
 
-    console.log("w", isLoading, webinar);
+    // console.log("w", isLoading, webinar);
+
+    let isLive = webinar?.type === "live";
+    console.log("isLive", isLive);
 
     return (
         <>
@@ -151,21 +160,43 @@ export default function WebinarDetails() {
                             {/* Sidebar */}
                             <div className="w-full md:w-80 space-y-6">
                                 <div className="border p-4 rounded-lg space-y-4">
-                                    <div>
-                                        <span className="text-gray-500 text-sm">
-                                            {webinar?.type}
-                                        </span>
-                                        <div className="font-medium">
-                                            {webinar?.date}
+                                    {isLive ? (
+                                        <div>
+                                            <span className="capitalize text-base font-semibold text-red-500">
+                                                {webinar?.type} Webinar
+                                            </span>
+                                            <div className="text-sm font-semibold text-gray-700">
+                                                <hr />
+                                                <div className="flex items-center gap-2 mt-2">
+                                                    <CalendarRange size={18} />
+                                                    {webinar?.date}
+                                                </div>
+                                                <div className="flex items-center gap-2 mt-2">
+                                                    <Clock size={18} />
+                                                    {webinar?.time}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    ) : null}
 
                                     <div>
-                                        <div className="text-sm text-gray-500">
-                                            Also available as:
-                                        </div>
-                                        <div className="text-gray-700 font-medium">
-                                            {webinar?.otherType} Course
+                                        <span className="capitalize text-base font-semibold text-red-500">
+                                            {`${
+                                                isLive
+                                                    ? "Also available as"
+                                                    : "Available in"
+                                            }:`}
+                                        </span>
+                                        <hr />
+                                        <div className="capitalize text-sm font-semibold mt-2 text-gray-700">
+                                            {isLive ? (
+                                                `${webinar?.otherType} Course`
+                                            ) : (
+                                                <>
+                                                    <p>{"On-Demand Course"}</p>
+                                                    <p>{"MP3 Download"}</p>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                     <Button

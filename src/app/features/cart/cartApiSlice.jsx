@@ -23,18 +23,18 @@ export const cartApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ["Cart"],
         }),
         removeFromCart: builder.mutation({
-            query: ({ cart_id, webinar_id }) => ({
+            query: ({ cart_id, item_index }) => ({
                 url: `/cart/remove`,
                 method: "POST",
-                body: { cart_id, webinar_id },
+                body: { cart_id, item_index },
             }),
             invalidatesTags: ["Cart"],
         }),
         clearCart: builder.mutation({
-            query: ({ cart_id }) => ({
-                url: "/cart/clear",
-                method: "POSt",
-                body: { cart_id },
+            query: () => ({
+                url: "/cart/clear-cart",
+                method: "POST",
+                // body: { cart_id },
             }),
             invalidatesTags: ["Cart"],
         }),

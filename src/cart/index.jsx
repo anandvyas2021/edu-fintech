@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Trash2, Minus, Plus, Loader } from "lucide-react";
 
 import emptyCart from "../assets/empty-cart.png";
+import dotLoading from "../assets/dots-loading.gif";
 import webinarDummy from "../assets/webinarDummy.jpg";
 
 import {
     useGetCartQuery,
     useRemoveFromCartMutation,
     useUpdateCartMutation,
+    useClearCartMutation,
 } from "../app/features/cart/cartApiSlice";
 
 import Button from "../components/basic/Button";
@@ -16,10 +18,12 @@ import Button from "../components/basic/Button";
 export default function Cart({}) {
     const [updateBtn, setUpdateBtn] = useState(null);
     const [removeBtn, setRemoveBtn] = useState(null);
-    const { data: cartData, isLoading, error } = useGetCartQuery();
+
+    const { data: cartData, refetch, isLoading, error } = useGetCartQuery();
     const [updateCart, { isLoading: updateLoading }] = useUpdateCartMutation();
     const [removeFromCart, { isLoading: removeItemLoading }] =
         useRemoveFromCartMutation();
+    const [clearCart, { isLoading: clearCartLoading }] = useClearCartMutation();
 
     let navigate = useNavigate();
 
@@ -31,13 +35,17 @@ export default function Cart({}) {
         setRemoveBtn(i);
         await removeFromCart({
             cart_id,
-            webinar_id: _id,
+            item_index: i,
         }).finally(() => {
             setRemoveBtn(null);
         });
     };
 
-    console.log("cart", cart_details);
+    const handleCartClear = async () => {
+        await clearCart();
+    };
+
+    // console.log("cart", cart_details);
 
     const handleQuantityChange = async (_id, quantity, type) => {
         let finalQuantity = type === "dec" ? quantity - 1 : quantity + 1;
@@ -73,9 +81,21 @@ export default function Cart({}) {
                 ) : (
                     <>
                         <div className="lg:w-[70%] w-full bg-white p-6 rounded-lg shadow-md">
-                            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-                                Your Cart
-                            </h2>
+                            <div className="flex items-center justify-between mb-5">
+                                <h2 className="text-2xl font-semibold  text-gray-800">
+                                    Your Cart
+                                </h2>
+                                {clearCartLoading ? (
+                                    <img src={dotLoading} className="size-8" />
+                                ) : (
+                                    <p
+                                        className="text-xs font-semibold cursor-pointer hover:underline text-red-600"
+                                        onClick={handleCartClear}
+                                    >
+                                        Clear Cart
+                                    </p>
+                                )}
+                            </div>
                             <div className="space-y-6">
                                 {cart_details?.details?.items?.map(
                                     (item, i) => (
@@ -184,7 +204,23 @@ export default function Cart({}) {
                                         key={i}
                                     >
                                         <span>{item?.label}</span>
-                                        <span>{item?.value}</span>
+                                        <div className="flex items-center gap-2">
+                                            {item?.type ? (
+                                                <span
+                                                    className={`text-lg font-bold ${
+                                                        item?.type ===
+                                                        "discount"
+                                                            ? "text-red-600"
+                                                            : "text-green-600"
+                                                    }`}
+                                                >
+                                                    {item?.type === "discount"
+                                                        ? "-"
+                                                        : "+"}
+                                                </span>
+                                            ) : null}
+                                            <span>{item?.value}</span>
+                                        </div>
                                     </div>
                                 ))}
                                 <div className="flex justify-between font-semibold text-gray-800 border-t pt-2 mt-2">

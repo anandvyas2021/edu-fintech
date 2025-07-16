@@ -30,7 +30,7 @@ export default function WebinarList({
 
     useEffect(() => {
         let results = webinarData?.data;
-        console.log("res", results);
+        // console.log("res", results);
 
         if (filters?.topics?.length) {
             results = results?.filter((w) =>
@@ -70,7 +70,7 @@ export default function WebinarList({
     }, [filters, sort]);
 
     const handlePage = (key) => {
-        console.log(key);
+        // console.log(key);
         setParams({
             page: key === "next" ? page + 1 : page > 1 ? page - 1 : page,
         });

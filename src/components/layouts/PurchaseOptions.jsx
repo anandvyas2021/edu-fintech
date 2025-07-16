@@ -30,38 +30,37 @@ export default function PurchaseOptions({ webinar }) {
             obj.cantAttend = cantAttend;
             obj.attendees = attendees;
         }
-        // console.log("obj", obj);
 
         getPricing(obj);
     }, [attendees, cantAttend, demandAddons, liveAddons]);
 
     let pricingData = pricing?.data;
-    console.log("data", data, pricingData);
-
-    const options = [
-        {
-            label: "OnDemand Course",
-            value: "on-demand",
-            icon: MonitorPlay,
-            price: pricingData?.course_price,
-        },
-        {
-            label: "MP3 Download",
-            value: "mp3",
-            icon: Download,
-            price: pricingData?.mp3_download_price,
-            isHidden: webinar?.type === "live",
-        },
-        {
-            label: "All-Access Pass",
-            value: "all_access_pass",
-            icon: Tag,
-            desc: "Pay once and get a full year of unlimited training in any format, at anytime.",
-            price: pricingData?.all_access_pass_price,
-        },
-    ];
+    // console.log("data", data, pricingData);
 
     const handelDemandUI = () => {
+        const options = [
+            {
+                label: "OnDemand Course",
+                value: "on-demand",
+                icon: MonitorPlay,
+                price: pricingData?.course_price,
+            },
+            {
+                label: "MP3 Download",
+                value: "mp3",
+                icon: Download,
+                price: pricingData?.mp3_download_price,
+                isHidden: webinar?.type === "live",
+            },
+            {
+                label: "All-Access Pass",
+                value: "all_access_pass",
+                icon: Tag,
+                desc: "Pay once and get a full year of unlimited training in any format, at anytime.",
+                price: pricingData?.all_access_pass_price,
+            },
+        ];
+
         return (
             <>
                 {webinar?.type === "on-demand" && (
@@ -159,7 +158,14 @@ export default function PurchaseOptions({ webinar }) {
     };
 
     const addToCartHandler = async () => {
-        let obj = { webinar_id: webinar?._id, quantity: 1 };
+        let obj = {
+            webinar_id: webinar?._id,
+            quantity: 1,
+            addons:
+                webinar?.type === "live" && !cantAttend
+                    ? liveAddons
+                    : demandAddons,
+        };
 
         if (webinar?.type === "live") {
             obj.cantAttend = cantAttend;
@@ -167,8 +173,9 @@ export default function PurchaseOptions({ webinar }) {
         if (!cantAttend) {
             obj.attendees = attendees;
         }
+
         await addToCart(obj).finally(() => {
-            // navigate("/cart");
+            navigate("/cart");
         });
     };
 

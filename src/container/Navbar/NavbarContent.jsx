@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ChevronDown, LogOut, UserCircle } from "lucide-react";
+import { ChevronDown, LogOut, ShoppingCart, UserCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -166,6 +166,12 @@ export default function NavbarContent() {
 
             {/* Search + Button + User Auth */}
             <div className="flex items-center space-x-4 relative">
+                <ShoppingCart
+                    color="blue"
+                    size={30}
+                    className="cursor-pointer hover:scale-105 transition-all"
+                    onClick={() => navigate("/cart")}
+                />
                 <input
                     type="text"
                     placeholder="Search..."
