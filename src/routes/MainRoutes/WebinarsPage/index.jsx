@@ -30,7 +30,7 @@ export default function WebinarsPage() {
     };
 
     return (
-        <section className="max-w-7xl mx-auto px-4 py-8">
+        <section className="max-w-7xl mx-auto px-4 py-8 ">
             <h1 className="text-3xl font-bold mb-6">Learning Library</h1>
 
             <FiltersLayout
