@@ -11,8 +11,8 @@ export default function AccessPass() {
                 {/* Left Content */}
                 <div className="flex-1">
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                        All of your training, right here at{" "}
-                        <span className="text-primary">Lorman</span>.
+                        All of your training, right here
+                        {/* <span className="text-primary">Lorman</span>. */}
                     </h2>
                     <p className="text-gray-600 mb-6">
                         Pay <strong>once</strong> and get a{" "}
@@ -87,7 +87,7 @@ export default function AccessPass() {
                 <div className="flex flex-col items-center">
                     <div className="text-4xl mb-3">🖥️</div>
                     <h3 className="font-bold text-lg mb-2">
-                        Unlimited Lorman Training
+                        Unlimited Training
                     </h3>
                     <p className="text-gray-600 text-sm">
                         With the All-Access Pass there is no guessing what you
@@ -105,7 +105,7 @@ export default function AccessPass() {
                     <p className="text-gray-600 text-sm">
                         Once you purchase your All-Access Pass you will never be
                         any further than one-click away from attending any
-                        Lorman training course.
+                        training course.
                     </p>
                 </div>
 

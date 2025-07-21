@@ -23,7 +23,7 @@ export default function ProcessSection() {
     return (
         <section className="bg-gray-100 py-12">
             <h2 className="text-xl md:text-2xl font-bold text-center mb-8">
-                Lorman certification process in 4 easy steps:
+                Our certification process in 4 easy steps:
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
                 {steps.map((step, idx) => (

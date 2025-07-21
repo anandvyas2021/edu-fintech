@@ -28,7 +28,7 @@ export default function CategoryDetails() {
     return (
         <div>
             <HeroPanelLayout
-                bonusTitle="Lorman Learning Path"
+                bonusTitle="Our Learning Path"
                 title={businessData?.title}
                 buttoned
             />

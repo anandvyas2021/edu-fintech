@@ -9,7 +9,7 @@ export default function HeroSection() {
             {/* Hero Text Section */}
             <section className="pt-20 pb-16 text-center px-6">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    Lorman All-Access Pass
+                    Our All-Access Pass
                 </h1>
                 <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-8">
                     Everything you need for professional development in one

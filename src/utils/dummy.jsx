@@ -115,9 +115,9 @@ export const whatSetsIndividualsApart = [
 
 export const individualFeatures = [
     {
-        subTitle: "Why Lorman",
+        subTitle: "Why us",
         title: "All The Training You Need",
-        desc: "The All-Access Pass gives you unlimited access to everything in our Learning Library. Choose from nearly 4,000 continuing education courses across a variety of topics, including certifications, CE credits, skills training, and more. With over 12,000 total resources and new courses added each month, you’ll find the training you need with Lorman.",
+        desc: "The All-Access Pass gives you unlimited access to everything in our Learning Library. Choose from nearly 4,000 continuing education courses across a variety of topics, including certifications, CE credits, skills training, and more. With over 12,000 total resources and new courses added each month, you’ll find the training you need with us.",
         image: "https://source.unsplash.com/600x400/?training,corporate",
         cta: "Browse Courses",
         slug: "training",
@@ -131,7 +131,7 @@ export const individualFeatures = [
     {
         subTitle: "LEARNING PATHS",
         title: "Master Your Skills",
-        desc: "Determine goals and create a clear path of required courses to enhance core knowledge areas with our Learning Paths. We work with our members to create custom learning and development routes to help enhance core skills or knowledge areas to achieve specific goals. Track your progress along the way and receive a Lorman certificate once completed.",
+        desc: "Determine goals and create a clear path of required courses to enhance core knowledge areas with our Learning Paths. We work with our members to create custom learning and development routes to help enhance core skills or knowledge areas to achieve specific goals. Track your progress along the way and receive a certificate once completed.",
         image: "https://source.unsplash.com/600x400/?career,growth",
         cta: "View Paths",
         slug: "learning-path",
@@ -139,7 +139,7 @@ export const individualFeatures = [
     {
         subTitle: "TRAINING FORMATS",
         title: "Flexible Course Delivery",
-        desc: "Learn at your own pace – however you want, wherever you want — with a variety of learning formats. Engage with Lorman's continuing education programs through live webinars, on-demand courses, white papers, audio recordings, and more.",
+        desc: "Learn at your own pace – however you want, wherever you want — with a variety of learning formats. Engage for continuing education programs through live webinars, on-demand courses, white papers, audio recordings, and more.",
         image: "https://source.unsplash.com/600x400/?education,custom",
         cta: "Browse Courses",
         slug: "training",
@@ -147,15 +147,15 @@ export const individualFeatures = [
     {
         subTitle: "CERTIFICATION & COMPLIANCE",
         title: "Easily Earn CE Credits",
-        desc: "Stay compliant and up to date on mandatory CE credits and professional certifications with Lorman. We work with nearly 100 accreditation agencies to provide CE credit to licensed professionals nationwide across numerous industries. Receive certifications including CLE, CPE, SHRM, HRCI, ENG, and others.",
+        desc: "Stay compliant and up to date on mandatory CE credits and professional certifications with us. We work with nearly 100 accreditation agencies to provide CE credit to licensed professionals nationwide across numerous industries. Receive certifications including CLE, CPE, SHRM, HRCI, ENG, and others.",
         image: "https://source.unsplash.com/600x400/?software,team",
     },
 ];
 export const enterpriseFeatures = [
     {
-        subTitle: "Why Lorman",
+        subTitle: "Why us",
         title: "Train Your Entire Staff",
-        desc: "Lorman provides training for professional licensing needs, upskilling to drive performance and employee retention, and compliance with ever-changing federal and state laws. The Lorman Learning Library has nearly 4,000 courses and 12,000 total resources with new courses added each month.",
+        desc: "We provides training for professional licensing needs, upskilling to drive performance and employee retention, and compliance with ever-changing federal and state laws. Our Learning Library has nearly 4,000 courses and 12,000 total resources with new courses added each month.",
         image: "https://source.unsplash.com/600x400/?training,corporate",
         cta: "Browse Courses",
         slug: "training",
@@ -177,7 +177,7 @@ export const enterpriseFeatures = [
     {
         subTitle: "A TRUSTED PARTNER",
         title: "Request Custom Courses",
-        desc: "Have a course in mind for your employees that you don’t see on our site? Our in-house production team can create custom employee training solutions that fit your organization’s needs. We work with you to achieve your company’s training and development goals. Lorman is not just a content provider — we are a true training partner.",
+        desc: "Have a course in mind for your employees that you don’t see on our site? Our in-house production team can create custom employee training solutions that fit your organization’s needs. We work with you to achieve your company’s training and development goals. We are not just a content provider — we are a true training partner.",
         image: "https://source.unsplash.com/600x400/?education,custom",
     },
     {
@@ -244,7 +244,7 @@ export const subscriptionPlans = [
     {
         title: "Custom Training",
         price: "Custom Quote",
-        desc: "Lorman can help you fulfill your team's specific training needs.",
+        desc: "We can help you fulfill your team's specific training needs.",
         cta: "Contact Sales",
         slug: "demo",
         features: [

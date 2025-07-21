@@ -52,7 +52,7 @@ export default function Benefits() {
                 <p className="text-blue-600 font-semibold uppercase mb-2 text-sm">
                     Benefits of Company Training
                 </p>
-                <BlockTitle title="How Lorman Can Help" />
+                <BlockTitle title="How we Can Help" />
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

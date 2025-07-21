@@ -19,7 +19,7 @@ const features = [
         icon: BookOpen,
         title: "16,000 Courses & Resources",
         description:
-            "Find relevant, timely, and impactful courses and reports in the ever-changing Lorman Learning Library.",
+            "Find relevant, timely, and impactful courses and reports in the ever-changing Learning Library.",
     },
     {
         icon: Ticket,

@@ -8,7 +8,7 @@ export default function HeroCTASection() {
                 {/* Left Content */}
                 <div className="flex-1">
                     <BlockTitle
-                        title={"Schedule a Demo with the Lorman Team"}
+                        title={"Schedule a Demo with our Team"}
                         textCenter={false}
                     />
                     <ul className="list-disc list-inside text-gray-600 space-y-2">

@@ -12,7 +12,7 @@ export default function HeroSection() {
         },
         {
             title: "Professional",
-            desc: "Unlimited access to Lorman’s Learning Library for your personal training and development.",
+            desc: "Unlimited access to  Learning Library for your personal training and development.",
             slug: "training",
         },
     ];

@@ -12,42 +12,40 @@ export default function About() {
 
                 <div className="space-y-4 text-gray-700 text-lg leading-relaxed text-left max-w-4xl mx-auto">
                     <p>
-                        We are a premier provider of online professional
-                        development and corporate training, serving the
-                        enterprise with custom training for employees at all
-                        levels of business.
+                        At CPA Workshop, we specialize in delivering
+                        high-quality webinars in Taxation, Accounting, Auditing,
+                        and Payroll. Our mission is to empower professionals
+                        with the knowledge and tools they need to stay
+                        compliant, competitive, and ahead in a rapidly evolving
+                        financial landscape.
                     </p>
 
                     <p>
-                        For more than 30 years, we've delivered relevant and
-                        timely continuing education courses that cover a broad
-                        range of business and technical skills and meet the
-                        continuing education requirements of nearly{" "}
-                        <span className="font-semibold text-gray-900">100</span>{" "}
-                        accreditation agencies.
+                        We are proud to be a recognized provider of Continuing
+                        Professional Education (CPE) credits by both NASBA
+                        (National Association of State Boards of Accountancy)
+                        and the IRS, ensuring that our training meets the
+                        highest industry standards. Whether you're a CPA, EA,
+                        tax preparer, or financial professional, our courses are
+                        designed to support your ongoing education and
+                        credentialing requirements.
                     </p>
 
                     <p>
-                        Our robust learning platform includes a variety of
-                        training topics, plus custom team training options and
-                        Learning Paths tailored specifically for our enterprise
-                        partners.
+                        Our webinars are led by seasoned experts and industry
+                        leaders who bring real-world insights and up-to-date
+                        guidance on complex regulatory changes, best practices,
+                        and emerging trends. With flexible online access,
+                        interactive sessions, and comprehensive resources, we
+                        make it easy for busy professionals to earn their CPE
+                        credits without compromising on quality or convenience.
                     </p>
 
                     <p>
-                        We understand continuing education doesn't always happen
-                        between the hours of 9 AM and 5 PM. That's why our
-                        customized training solutions are easily accessible on
-                        desktop or mobile — so your employees can learn at their
-                        own pace wherever they want, whenever they want.
-                    </p>
-
-                    <p>
-                        We work hard to provide you with top-of-the-line company
-                        training and development programs to help your
-                        organization stay ahead of the competition, remain
-                        compliant with mandatory CE credits, and equip employees
-                        with the tools they need to stay productive.
+                        Join hundreds of satisfied attendees who trust us for
+                        their professional development needs. At CPA Workshop,
+                        we are committed to your growth, compliance, and
+                        success.
                     </p>
                 </div>
             </div>

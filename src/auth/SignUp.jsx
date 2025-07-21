@@ -335,7 +335,7 @@ export default function SignUp() {
                 {/* Sidebar Content */}
                 <div>
                     <h3 className="font-semibold">
-                        Create a Lorman Account Today and Receive:
+                        Create an Account Today and Receive:
                     </h3>
                     <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
                         <li>
