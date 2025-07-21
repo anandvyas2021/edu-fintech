@@ -4,6 +4,8 @@ import { ChevronDown, LogOut, ShoppingCart, UserCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
+import logo from "../../assets/edu-fintech-logo.png";
+
 import { persistor } from "../../app/store";
 import { logout } from "../../app/features/auth/authSlice";
 import { useLogoutMutation } from "../../app/features/auth/authApiSlice";
@@ -108,14 +110,14 @@ export default function NavbarContent() {
     };
 
     return (
-        <nav className="relative w-full h-[70px] px-6 flex items-center justify-between shadow-md z-50 bg-white">
+        <nav className="relative w-full h-[75px] px-6 pl-20 flex items-center justify-between shadow-md z-50 bg-white">
             {/* Logo */}
-            <div
+            <figure
                 className="text-2xl font-bold cursor-pointer text-blue-600"
                 onClick={() => navigate("/")}
             >
-                YourLogo
-            </div>
+                <img src={logo} alt="edu-fintech" className="size-[75px]" />
+            </figure>
 
             {/* Nav Links */}
             <div
