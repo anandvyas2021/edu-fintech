@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
+    let navigate = useNavigate();
+
     return (
         <footer className="relative mx-5 shadow-xl bg-[#F8FAFC] text-gray-700 !font-sans rounded-lg">
             {/* Link Sections */}
@@ -79,7 +83,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom bar */}
-            <div className="border-t border-gray-200 py-4 px-6 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
+            <div className="border-t border-gray-200 py-4 px-6 text-sm text-gray-900 flex flex-col md:flex-row justify-between items-center">
                 <p>
                     ©Copyright{" "}
                     <a href="#" className="text-indigo-600 hover:underline">
@@ -88,12 +92,24 @@ export default function Footer() {
                     All rights reserved. 2025
                 </p>
                 <div className="flex space-x-6 mt-2 md:mt-0">
-                    <a href="#" className="hover:text-indigo-600">
+                    <p
+                        className="cursor-pointer hover:text-indigo-600"
+                        onClick={() => navigate("/cancellation-policy")}
+                    >
+                        Cancellation Policy
+                    </p>
+                    <p
+                        className="cursor-pointer hover:text-indigo-600"
+                        onClick={() => navigate("/privacy-policy")}
+                    >
                         Privacy & Policy
-                    </a>
-                    <a href="#" className="hover:text-indigo-600">
+                    </p>
+                    <p
+                        className="cursor-pointer hover:text-indigo-600"
+                        onClick={() => navigate("/terms-conditions")}
+                    >
                         Terms & Condition
-                    </a>
+                    </p>
                 </div>
             </div>
 
