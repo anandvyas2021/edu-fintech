@@ -22,10 +22,13 @@ export default function HeroSection() {
             {/* Hero Text Section */}
             <section className="pt-20 pb-16 text-center px-6">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    Professional Training to Comply, Upskill & Grow
+                    {/* Professional Training to Comply, Upskill & Grow */}
+                    CPE That Counts. Knowledge That Lasts
                 </h1>
                 <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-8">
-                    Continuing Education | Workforce Compliance | Upskilling
+                    {/* Continuing Education | Workforce Compliance | Upskilling */}
+                    {/* CPE That Counts. Knowledge That Lasts */}
+                    Where Compliance Meets Confidence
                 </p>
                 {/* <div className="flex justify-center space-x-4">
                     <Button
