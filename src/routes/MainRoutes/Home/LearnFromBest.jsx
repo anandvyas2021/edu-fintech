@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
+import { BlockTitle } from "../../../components/typography";
+
 export default function LearnFromBest() {
     const educators = [
         {
@@ -38,9 +40,7 @@ export default function LearnFromBest() {
     return (
         <section className="bg-[#F8FAFC] py-20 px-6">
             <div className="max-w-6xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Learn from the very best
-                </h2>
+                <BlockTitle title="Learn from the very best" />
                 <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
                     Our courses are taught by world-class experts across every
                     industry. Their experience drives your success.

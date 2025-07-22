@@ -3,7 +3,8 @@ import TrainingSolutions from "./TrainingSolutions";
 import LearnFromBest from "./LearnFromBest";
 
 import TrustedStats from "../../../custom/TrustedStats";
-import FooterAppointCard from "../../../components/cards/FooterAppointCard";
+import Testimonials from "../../OtherRoutes/DemoPage/Testimonials";
+// import FooterAppointCard from "../../../components/cards/FooterAppointCard";
 
 export default function Home() {
     return (
@@ -12,7 +13,8 @@ export default function Home() {
             <TrainingSolutions />
             <TrustedStats />
             <LearnFromBest />
-            <FooterAppointCard />
+            {/* <FooterAppointCard /> */}
+            <Testimonials />
 
             {/* <section className="bg-white py-16 px-6">
                 <div className="max-w-4xl mx-auto">

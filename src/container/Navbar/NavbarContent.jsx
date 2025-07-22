@@ -36,29 +36,29 @@ const navItems = [
         items: ["Frontend", "Backend", "Fullstack"],
         slug: "training",
     },
-    {
-        name: "Resources",
-        hasDropdown: true,
-        parentRoute: "",
-        items: [
-            {
-                label: "Professional Directory",
-                desc: "Explore our directory of subject-matter experts to connect with a qualified professional in your field",
-                slug: "professionals",
-            },
-            {
-                label: "Blog",
-                desc: "Your one-stop shop for industry news, keen insights, and continuing education resources",
-                slug: "blog",
-            },
-            {
-                label: "Articles & White Papers",
-                desc: "Digital resources across a variety of topics to support and enhance your online learning",
-                slug: "",
-            },
-        ],
-    },
-    { name: "Plans", slug: "plans", hasDropdown: false },
+    // {
+    //     name: "Resources",
+    //     hasDropdown: true,
+    //     parentRoute: "",
+    //     items: [
+    //         {
+    //             label: "Professional Directory",
+    //             desc: "Explore our directory of subject-matter experts to connect with a qualified professional in your field",
+    //             slug: "professionals",
+    //         },
+    //         {
+    //             label: "Blog",
+    //             desc: "Your one-stop shop for industry news, keen insights, and continuing education resources",
+    //             slug: "blog",
+    //         },
+    //         {
+    //             label: "Articles & White Papers",
+    //             desc: "Digital resources across a variety of topics to support and enhance your online learning",
+    //             slug: "",
+    //         },
+    //     ],
+    // },
+    // { name: "Plans", slug: "plans", hasDropdown: false },
 ];
 
 export default function NavbarContent() {

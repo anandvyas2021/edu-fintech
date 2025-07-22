@@ -39,7 +39,10 @@ const testimonials = [
 export default function Testimonials() {
     return (
         <div className="relative max-w-6xl mx-auto py-12 px-4">
-            <BlockTitle title="Here's what others say about us" />
+            <BlockTitle
+                title="Here's what others say about us"
+                className="mb-5"
+            />
 
             {/* Custom Navigation Arrows */}
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 z-10">

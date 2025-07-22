@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Footer() {
     let navigate = useNavigate();
@@ -6,23 +6,25 @@ export default function Footer() {
     return (
         <footer className="relative mx-5 shadow-xl bg-[#F8FAFC] text-gray-700 !font-sans rounded-lg">
             {/* Link Sections */}
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8 py-10 border-t border-gray-200">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-t border-gray-200">
                 {/* Contact Info */}
-                <div>
+                <div className="col-span-2">
                     <h4 className="text-lg font-semibold text-gray-900 mb-4">
                         Contact
                     </h4>
                     <ul className="space-y-3 text-sm text-gray-600">
                         <li className="flex items-start gap-2">
-                            📞 602–774–4735
+                            📞 +1 8956238956
                         </li>
                         <li className="flex items-start gap-2">
-                            📍 11022 South 51st Street Suite 105, Phoenix, AZ
-                            85044
+                            📍 1725 Pennsylvania Avenue NW, Washington, DC 20006
                         </li>
-                        <li className="flex items-start gap-2">
-                            📧 hello@fintech.com
-                        </li>
+                        <a
+                            href="mailto:support@cpaworkshop.com"
+                            className="flex items-start gap-2"
+                        >
+                            📧 support@cpaworkshop.com
+                        </a>
                     </ul>
                 </div>
 
@@ -31,35 +33,19 @@ export default function Footer() {
                     {
                         title: "Navigate",
                         links: [
-                            "Services",
-                            "Success Stories",
-                            "Discover",
-                            "Care",
-                            "Download App",
-                        ],
-                    },
-                    {
-                        title: "Solution",
-                        links: [
-                            "Get in Touch",
-                            "Technology",
-                            "Who’re We?",
-                            "Expertise",
-                        ],
-                    },
-                    {
-                        title: "Discover",
-                        links: [
-                            "Latest News",
-                            "New Arrivals",
-                            "Solution",
-                            "Gain Profession",
-                            "Career",
+                            { label: "About us", slug: "about-us" },
+                            { label: "Speakers", slug: "professionals" },
+                            { label: "Success Stories", slug: "" },
                         ],
                     },
                     {
                         title: "Follow Us",
-                        links: ["Facebook", "Instagram", "LinkedIn", "Twitter"],
+                        links: [
+                            { label: "Facebook", slug: "" },
+                            { label: "Instagram", slug: "" },
+                            { label: "LinkedIn", slug: "" },
+                            { label: "Twitter", slug: "" },
+                        ],
                     },
                 ].map((col) => (
                     <div key={col.title}>
@@ -67,14 +53,14 @@ export default function Footer() {
                             {col.title}
                         </h4>
                         <ul className="space-y-2 text-sm text-gray-600">
-                            {col.links.map((link) => (
-                                <li key={link}>
-                                    <a
-                                        href="#"
+                            {col?.links?.map((item, i) => (
+                                <li key={i}>
+                                    <NavLink
+                                        to={`/${item?.slug}`}
                                         className="hover:text-indigo-600 transition"
                                     >
-                                        {link}
-                                    </a>
+                                        {item?.label}
+                                    </NavLink>
                                 </li>
                             ))}
                         </ul>

@@ -1,11 +1,4 @@
-import {
-    BookOpen,
-    Layers,
-    Ticket,
-    Laptop,
-    CheckCircle,
-    Award,
-} from "lucide-react";
+import { User, Layers, Ticket, Laptop, CheckCircle, Award } from "lucide-react";
 import { BlockTitle } from "../../../components/typography";
 
 const features = [
@@ -16,10 +9,10 @@ const features = [
             "Implement a cohesive training strategy covering workforce compliance and profession-specific continuing education.",
     },
     {
-        icon: BookOpen,
-        title: "16,000 Courses & Resources",
+        icon: Laptop,
+        title: "Live & On-Demand Webinars",
         description:
-            "Find relevant, timely, and impactful courses and reports in the ever-changing Learning Library.",
+            "Access training in real-time or watch at your convenience — 24/7 availability to fit any schedule.",
     },
     {
         icon: Ticket,
@@ -34,10 +27,10 @@ const features = [
             "Stay up-to-date with CEU requirements of certifications like CLE, CPE, SHRM, HRCI, and more.",
     },
     {
-        icon: Laptop,
-        title: "Learning Platform",
+        icon: User,
+        title: "Expert-Led Sessions",
         description:
-            "Manage team strategies, track education credits, and progress with skill reinforcement features.",
+            "Learn from top industry professionals, including CPAs, EAs, and seasoned practitioners with real-world experience.",
     },
     {
         icon: CheckCircle,
