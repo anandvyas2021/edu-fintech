@@ -16,7 +16,7 @@ export default function Home() {
             {/* <FooterAppointCard /> */}
             <Testimonials />
 
-            {/* <section className="bg-white py-16 px-6 ">
+            {/* <section className="bg-white py-16 px-6  ">
                 <div className="max-w-4xl mx-auto">
                     <h4 className="text-xl font-semibold mb-6 text-center">
                         What Our Users Say
