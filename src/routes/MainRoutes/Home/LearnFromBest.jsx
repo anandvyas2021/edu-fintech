@@ -62,7 +62,7 @@ export default function LearnFromBest() {
                 >
                     {educators.map((ed, idx) => (
                         <SwiperSlide key={idx} className="h-full">
-                            <div className="h-full min-h-[250px] bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col items-center text-center hover:shadow-md transition">
+                            <div className="h-full min-h-[250px] bg-white rounded-xl  border border-gray-200 shadow-sm p-6 flex flex-col items-center text-center hover:shadow-md transition">
                                 <img
                                     src={ed.avatar}
                                     alt={ed.name}
